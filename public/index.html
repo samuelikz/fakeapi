@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>fakeapi</title>
+  <style>
+    :root{
+      /* Light */
+      --bg: #f7f7f8;
+      --card: #ffffff;
+      --fg: #1f2937;
+      --muted: #6b7280;
+      --primary: #6d28d9; /* roxo suave */
+      --link: #ec4899;    /* rosa */
+      --border: #e5e7eb;
+      --code-bg: #0f172a;
+      --code-fg: #e2e8f0;
+    }
+    /* Dark theme */
+    html[data-theme="dark"]{
+      --bg: #0b0f14;
+      --card: #0f1520;
+      --fg: #e5e7eb;
+      --muted: #9aa4b2;
+      --primary: #a78bfa;
+      --link: #fb7185;
+      --border: #1f2a37;
+      --code-bg: #0b1020;
+      --code-fg: #e5e7eb;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background: var(--bg);
+      color: var(--fg);
+      min-height: 100vh;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .container{
+      width: min(960px, 96vw);
+      padding: 28px 20px 36px;
+    }
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; margin-bottom:18px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+    }
+    .logo{
+      width:36px; height:36px; border-radius:10px;
+      background: linear-gradient(135deg, var(--primary), var(--link));
+      box-shadow: 0 10px 24px rgba(0,0,0,.15);
+    }
+    h1{font-size:20px; margin:0; font-weight:700}
+    .muted{color:var(--muted)}
+    .controls{display:flex; align-items:center; gap:8px}
+    .btn{
+      border:1px solid var(--border);
+      background: var(--card);
+      color: var(--fg);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 13px;
+      cursor:pointer;
+    }
+    .grid{display:grid; grid-template-columns:1fr; gap:16px; margin-top:8px}
+    @media (min-width: 880px){ .grid{ grid-template-columns: 0.9fr 1.1fr } }
+    .card{
+      background: var(--card);
+      border:1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.04);
+    }
+    .card h2{font-size:16px; margin:0 0 8px; font-weight:700}
+    ul{list-style:none; padding:0; margin: 6px 0}
+    li.resource{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px; padding:12px 14px; border:1px solid var(--border);
+      border-radius:12px; background:transparent;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      margin:8px 0;
+    }
+    li.resource:hover{
+      transform: translateY(-1px);
+      background: color-mix(in oklab, var(--card) 80%, var(--bg));
+      border-color: color-mix(in oklab, var(--border) 60%, var(--primary));
+    }
+    a{color: var(--link); text-decoration:none; font-weight:600}
+    a:hover{text-decoration:underline}
+    .count{font-size:12px; color: var(--muted)}
+    code, pre{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12.5px;
+    }
+    pre{
+      background: var(--code-bg); color: var(--code-fg);
+      padding: 12px 14px; border-radius: 12px; overflow:auto;
+      border:1px solid var(--border);
+    }
+    details{border:1px dashed var(--border); border-radius:12px; padding:10px 12px; background:transparent}
+    details+details{margin-top:10px}
+    summary{cursor:pointer; font-weight:600}
+    footer{
+      margin-top:18px; font-size:12px; color:var(--muted); display:flex; justify-content:space-between; gap:8px;
+    }
+    .empty{color: var(--muted); font-style: italic}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>fakeapi</h1>
+          <div class="muted">API REST fake para protótipos e testes</div>
+        </div>
+      </div>
+      <div class="controls">
+        <button id="themeBtn" class="btn" aria-label="Alternar tema">Alternar tema</button>
+      </div>
+    </header>
+
+    <div class="grid">
+      <!-- Recursos -->
+      <section class="card">
+        <h2>Recursos disponíveis</h2>
+        <ul id="list"><li class="empty">Carregando…</li></ul>
+        <div class="muted" style="font-size:12px;margin-top:2px">Clique em um recurso para listar os itens.</div>
+      </section>
+
+      <!-- Documentação -->
+      <section class="card">
+        <h2>Como usar</h2>
+        <p>As rotas retornam <strong>array</strong> por padrão (<code>[{...}]</code>). Para incluir metadados (<code>page</code>, <code>total</code>), use <code>?_meta=1</code>.</p>
+
+        <div style="margin:10px 0;">
+          <strong>Endpoints:</strong><br/>
+          <code>GET /:resource</code> • <code>GET /:resource/:id</code> •
+          <code>POST /:resource</code> • <code>PUT /:resource/:id</code> •
+          <code>PATCH /:resource/:id</code> • <code>DELETE /:resource/:id</code>
+        </div>
+
+        <details open>
+          <summary>Parâmetros</summary>
+          <ul class="muted">
+            <li><code>?_page=1</code> e <code>?_limit=10</code> — paginação (usa header <code>X-Total-Count</code>).</li>
+            <li><code>?q=texto</code> — busca simples por texto.</li>
+            <li><code>?_meta=1</code> — muda o retorno para <code>{ data, meta }</code>.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Exemplos (cURL)</summary>
+          <pre>
+# LISTAR (array)
+curl http://localhost:8000/posts
+
+# LISTAR paginado + meta
+curl "http://localhost:8000/posts?_page=1&_limit=5&_meta=1"
+
+# DETALHE
+curl http://localhost:8000/posts/1
+
+# CRIAR
+curl -X POST http://localhost:8000/posts \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Novo post","body":"conteúdo"}'
+          </pre>
+        </details>
+      </section>
+    </div>
+
+    <footer>
+      <span>Projeto: <strong>fakeapi</strong></span>
+      <span>Créditos: <a href="https://github.com/samuelikz" target="_blank" rel="noopener">github/samuelikz</a></span>
+    </footer>
+  </div>
+
+  <script>
+    // ===== Tema (claro/escuro) =====
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const saved = localStorage.getItem('fakeapi_theme');
+    const initial = saved ? saved : (prefersDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', initial);
+
+    document.getElementById('themeBtn').addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('fakeapi_theme', next);
+    });
+
+    // ===== Lista de recursos =====
+    const itemLabel = (n) => (n === 1 ? 'item' : 'items');
+    fetch('/__resources')
+      .then(r => r.json())
+      .then(rows => {
+        const ul = document.getElementById('list');
+        ul.innerHTML = '';
+        if (!rows.length) {
+          ul.innerHTML = '<li class="empty">Nenhum recurso encontrado.</li>';
+          return;
+        }
+        rows.forEach(({ name, count }) => {
+          const li = document.createElement('li');
+          li.className = 'resource';
+          li.innerHTML = `<a href="/${name}">/${name}</a>
+                          <span class="count">${count} ${itemLabel(count)}</span>`;
+          ul.appendChild(li);
+        });
+      })
+      .catch(() => {
+        document.getElementById('list').innerHTML =
+          '<li class="empty">Falha ao carregar recursos.</li>';
+      });
+  </script>
+</body>
+</html>
