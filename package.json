@@ -6,6 +6,7 @@
   "author": "Samuel (github.com/samuelikz)",
   "main": "src/server.js",
   "type": "commonjs",
+  "license": "MIT",
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
@@ -15,8 +16,7 @@
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "jsonwebtoken": "^9.0.2"
+    "express": "^4.19.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
@@ -29,5 +29,16 @@
     "nodejs",
     "development"
   ],
-  "license": "MIT"
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "homepage": "https://github.com/samuelikz/fakeapi#readme",
+  "bugs": {
+    "url": "https://github.com/samuelikz/fakeapi/issues"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/samuelikz"
+  }
 }
