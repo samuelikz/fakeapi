@@ -11,6 +11,7 @@ const logger = require('./middleware/logger');
 const { validateJSON, validateId, validatePagination } = require('./middleware/validation');
 
 // Rotas
+const healthRoutes = require('./routes/healthRoutes');
 const systemRoutes = require('./routes/systemRoutes');
 const resourceRoutes = require('./routes/resourceRoutes');
 
@@ -29,6 +30,9 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // Middleware de validação global
 app.use(validateJSON);
+
+// Rotas de health check (devem vir primeiro para monitoramento)
+app.use('/', healthRoutes);
 
 // Rotas do sistema (devem vir antes das rotas de recursos)
 app.use('/', systemRoutes);
@@ -51,6 +55,11 @@ app.use('*', (req, res) => {
     error: 'Not Found',
     message: `Route ${req.originalUrl} not found`,
     availableRoutes: [
+      'GET /health - Health check básico',
+      'GET /health/detailed - Health check detalhado',
+      'GET /health/ping - Ping simples',
+      'GET /health/ready - Readiness check',
+      'GET /health/live - Liveness check',
       'GET /__resources - List available resources',
       'GET /_docs - API documentation',
       'GET /:resource - List items from a resource',
@@ -68,6 +77,7 @@ app.listen(port, () => {
   console.log(`🚀 Fake API Server running on http://localhost:${port}`);
   console.log(`📚 Documentation available at http://localhost:${port}/_docs`);
   console.log(`🌐 Web interface available at http://localhost:${port}`);
+  console.log(`💚 Health checks available at http://localhost:${port}/health`);
   console.log(`⚙️  Environment: ${APP_CONFIG.environment}`);
 });
 

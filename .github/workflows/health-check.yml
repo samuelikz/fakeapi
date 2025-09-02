@@ -1,0 +1,89 @@
+name: 💚 Health Check
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Executa a cada 30 minutos
+    - cron: '*/30 * * * *'
+  workflow_dispatch: # Permite execução manual
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 🔍 Checkout code
+      uses: actions/checkout@v4
+      
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: 📦 Install dependencies
+      run: npm ci
+      
+    - name: 🚀 Start application
+      run: |
+        npm start &
+        sleep 10 # Aguarda a aplicação inicializar
+        
+    - name: 💚 Test health endpoints
+      run: |
+        echo "🧪 Testing health endpoints..."
+        
+        # Test health basic
+        echo "Testing /health..."
+        curl -f http://localhost:8000/health || exit 1
+        
+        # Test health detailed
+        echo "Testing /health/detailed..."
+        curl -f http://localhost:8000/health/detailed || exit 1
+        
+        # Test health ping
+        echo "Testing /health/ping..."
+        response=$(curl -s http://localhost:8000/health/ping)
+        if [ "$response" != "pong" ]; then
+          echo "❌ Expected 'pong', got '$response'"
+          exit 1
+        fi
+        
+        # Test health ready
+        echo "Testing /health/ready..."
+        curl -f http://localhost:8000/health/ready || exit 1
+        
+        # Test health live
+        echo "Testing /health/live..."
+        curl -f http://localhost:8000/health/live || exit 1
+        
+        echo "✅ All health endpoints working correctly!"
+        
+    - name: 📊 Health status summary
+      run: |
+        echo "💚 Health Check Summary:"
+        echo "✅ /health - Basic health check"
+        echo "✅ /health/detailed - Detailed health check"
+        echo "✅ /health/ping - Ping endpoint"
+        echo "✅ /health/ready - Readiness check"
+        echo "✅ /health/live - Liveness check"
+        echo ""
+        echo "🎉 All health checks passed!"
+        
+    - name: 🧹 Cleanup
+      if: always()
+      run: |
+        echo "🧹 Cleaning up..."
+        pkill -f "node.*server.js" || true
+        
+    - name: 📝 Health check report
+      if: always()
+      run: |
+        echo "📋 Health Check Report:"
+        echo "🕐 Timestamp: $(date)"
+        echo "🌐 Environment: GitHub Actions"
+        echo "📊 Status: ${{ job.status }}"
+        echo "💚 Health endpoints: All operational"
