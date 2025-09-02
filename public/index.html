@@ -1,223 +1,320 @@
 <!doctype html>
-<html lang="pt-BR" data-theme="">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>fakeapi</title>
-  <style>
-    :root{
-      /* Light */
-      --bg: #f7f7f8;
-      --card: #ffffff;
-      --fg: #1f2937;
-      --muted: #6b7280;
-      --primary: #6d28d9; /* roxo suave */
-      --link: #ec4899;    /* rosa */
-      --border: #e5e7eb;
-      --code-bg: #0f172a;
-      --code-fg: #e2e8f0;
-    }
-    /* Dark theme */
-    html[data-theme="dark"]{
-      --bg: #0b0f14;
-      --card: #0f1520;
-      --fg: #e5e7eb;
-      --muted: #9aa4b2;
-      --primary: #a78bfa;
-      --link: #fb7185;
-      --border: #1f2a37;
-      --code-bg: #0b1020;
-      --code-fg: #e5e7eb;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      background: var(--bg);
-      color: var(--fg);
-      min-height: 100vh;
-      display:flex; align-items:center; justify-content:center;
-    }
-    .container{
-      width: min(960px, 96vw);
-      padding: 28px 20px 36px;
-    }
-    header{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px; margin-bottom:18px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-    }
-    .logo{
-      width:36px; height:36px; border-radius:10px;
-      background: linear-gradient(135deg, var(--primary), var(--link));
-      box-shadow: 0 10px 24px rgba(0,0,0,.15);
-    }
-    h1{font-size:20px; margin:0; font-weight:700}
-    .muted{color:var(--muted)}
-    .controls{display:flex; align-items:center; gap:8px}
-    .btn{
-      border:1px solid var(--border);
-      background: var(--card);
-      color: var(--fg);
-      border-radius: 10px;
-      padding: 8px 12px;
-      font-size: 13px;
-      cursor:pointer;
-    }
-    .grid{display:grid; grid-template-columns:1fr; gap:16px; margin-top:8px}
-    @media (min-width: 880px){ .grid{ grid-template-columns: 0.9fr 1.1fr } }
-    .card{
-      background: var(--card);
-      border:1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px;
-      box-shadow: 0 4px 16px rgba(0,0,0,.04);
-    }
-    .card h2{font-size:16px; margin:0 0 8px; font-weight:700}
-    ul{list-style:none; padding:0; margin: 6px 0}
-    li.resource{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:10px; padding:12px 14px; border:1px solid var(--border);
-      border-radius:12px; background:transparent;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      margin:8px 0;
-    }
-    li.resource:hover{
-      transform: translateY(-1px);
-      background: color-mix(in oklab, var(--card) 80%, var(--bg));
-      border-color: color-mix(in oklab, var(--border) 60%, var(--primary));
-    }
-    a{color: var(--link); text-decoration:none; font-weight:600}
-    a:hover{text-decoration:underline}
-    .count{font-size:12px; color: var(--muted)}
-    code, pre{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 12.5px;
-    }
-    pre{
-      background: var(--code-bg); color: var(--code-fg);
-      padding: 12px 14px; border-radius: 12px; overflow:auto;
-      border:1px solid var(--border);
-    }
-    details{border:1px dashed var(--border); border-radius:12px; padding:10px 12px; background:transparent}
-    details+details{margin-top:10px}
-    summary{cursor:pointer; font-weight:600}
-    footer{
-      margin-top:18px; font-size:12px; color:var(--muted); display:flex; justify-content:space-between; gap:8px;
-    }
-    .empty{color: var(--muted); font-style: italic}
-  </style>
+  <title>fakeapi — recursos e exemplos</title>
+
+  <!-- Prevenir FOUC do tema -->
+  <script>
+    (function(){
+      try {
+        const saved = localStorage.getItem('fakeapi_theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = saved ? saved === 'dark' : prefersDark;
+        if (isDark) document.documentElement.classList.add('dark');
+      } catch {}
+    })();
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script> tailwind.config = { darkMode: 'class' } </script>
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='20' fill='%236d28d9'/%3E%3Cpath d='M64 26l38 21v42L64 102 26 89V47z' fill='white'/%3E%3C/svg%3E">
 </head>
-<body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100">
+  <!-- Header -->
+  <header class="sticky top-0 z-30 border-b border-slate-200/60 dark:border-slate-800/60 backdrop-blur bg-white/70 dark:bg-slate-900/70">
+    <div class="max-w-5xl mx-auto px-4 py-3 relative">
+      <div class="flex items-center justify-between gap-3">
+        <!-- Brand -->
+        <a href="#" class="flex items-center gap-3">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-pink-500 text-white shadow-md shadow-violet-500/20">
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 4v10l-7 4-7-4V7z"/><path d="M12 12l7-4"/></svg>
+          </span>
+          <div>
+            <h1 class="text-base font-bold leading-5">fakeapi</h1>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-4">API REST para protótipos e testes</p>
+          </div>
+        </a>
+
+        <!-- Desktop controls -->
+        <div class="hidden md:flex flex-wrap items-center gap-2">
+          <input data-role="baseInput"
+                 class="w-[260px] sm:w-[320px] rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-violet-500"
+                 placeholder="https://fakeapi.aioher.com" aria-label="Base URL da API">
+          <button data-role="detectBtn" class="rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800">Detectar</button>
+          <button data-role="reloadBtn" class="rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800">Recarregar</button>
+          <button data-role="themeBtn" class="rounded-lg bg-violet-600 text-white px-3 py-2 text-sm hover:bg-violet-700">Tema</button>
+        </div>
+
+        <!-- Mobile: hamburger -->
+        <button id="navToggle" aria-controls="mobileMenu" aria-expanded="false"
+                class="md:hidden inline-flex items-center justify-center rounded-lg border border-slate-300 dark:border-slate-700 p-2 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+                aria-label="Abrir menu">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile panel -->
+      <div id="mobileMenu" class="md:hidden hidden absolute left-0 right-0 top-full mt-2">
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 shadow-xl backdrop-blur p-3 space-y-2">
+          <label class="block text-xs text-slate-500 dark:text-slate-400 px-1">Base URL</label>
+          <input data-role="baseInput"
+                 class="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-violet-500"
+                 placeholder="https://fakeapi.aioher.com" aria-label="Base URL da API (mobile)">
+          <div class="grid grid-cols-3 gap-2">
+            <button data-role="detectBtn" class="rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800">Detectar</button>
+            <button data-role="reloadBtn" class="rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800">Recarregar</button>
+            <button data-role="themeBtn" class="rounded-lg bg-violet-600 text-white px-3 py-2 text-sm hover:bg-violet-700">Tema</button>
+          </div>
+          <a id="apiLink" href="#" target="_blank" rel="noopener" class="block text-xs text-pink-600 dark:text-pink-400 hover:underline px-1">abrir API</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="max-w-5xl mx-auto px-4 py-8 grid lg:grid-cols-[1.05fr,0.95fr] gap-6">
+    <!-- Recursos -->
+    <section class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800/70 shadow-sm">
+      <div class="p-5 border-b border-slate-200 dark:border-slate-800">
+        <div class="flex items-center justify-between">
+          <h2 class="text-lg font-semibold">Recursos disponíveis</h2>
+          <!-- API link duplicado é controlado pelo do menu mobile -->
+        </div>
+        <p id="status" class="mt-1 text-xs text-slate-500 dark:text-slate-400">Carregando…</p>
+      </div>
+      <ul id="list" class="p-3 divide-y divide-slate-200/70 dark:divide-slate-800/70">
+        <li class="px-3 py-3 text-sm text-slate-500">Carregando…</li>
+      </ul>
+    </section>
+
+    <!-- Docs rápidos -->
+    <section class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800/70 shadow-sm">
+      <div class="p-5 border-b border-slate-200 dark:border-slate-800">
+        <h2 class="text-lg font-semibold">Como usar</h2>
+        <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">
+          Retorno padrão é um <b>array</b>. Para incluir metadados (<code class="text-xs bg-slate-100 dark:bg-slate-900/60 px-1 py-0.5 rounded">page</code>, <code class="text-xs bg-slate-100 dark:bg-slate-900/60 px-1 py-0.5 rounded">total</code>), use <code class="text-xs bg-slate-100 dark:bg-slate-900/60 px-1 py-0.5 rounded">?_meta=1</code>.
+        </p>
+      </div>
+      <div class="p-5 space-y-4">
         <div>
-          <h1>fakeapi</h1>
-          <div class="muted">API REST fake para protótipos e testes</div>
-        </div>
-      </div>
-      <div class="controls">
-        <button id="themeBtn" class="btn" aria-label="Alternar tema">Alternar tema</button>
-      </div>
-    </header>
-
-    <div class="grid">
-      <!-- Recursos -->
-      <section class="card">
-        <h2>Recursos disponíveis</h2>
-        <ul id="list"><li class="empty">Carregando…</li></ul>
-        <div class="muted" style="font-size:12px;margin-top:2px">Clique em um recurso para listar os itens.</div>
-      </section>
-
-      <!-- Documentação -->
-      <section class="card">
-        <h2>Como usar</h2>
-        <p>As rotas retornam <strong>array</strong> por padrão (<code>[{...}]</code>). Para incluir metadados (<code>page</code>, <code>total</code>), use <code>?_meta=1</code>.</p>
-
-        <div style="margin:10px 0;">
-          <strong>Endpoints:</strong><br/>
-          <code>GET /:resource</code> • <code>GET /:resource/:id</code> •
-          <code>POST /:resource</code> • <code>PUT /:resource/:id</code> •
-          <code>PATCH /:resource/:id</code> • <code>DELETE /:resource/:id</code>
+          <div class="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-2">Endpoints</div>
+          <div class="text-sm text-slate-700 dark:text-slate-200 flex flex-wrap gap-2">
+            <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-900/60">GET /:resource</code>
+            <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-900/60">GET /:resource/:id</code>
+            <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-900/60">POST /:resource</code>
+            <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-900/60">PUT /:resource/:id</code>
+            <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-900/60">PATCH /:resource/:id</code>
+            <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-900/60">DELETE /:resource/:id</code>
+          </div>
         </div>
 
-        <details open>
-          <summary>Parâmetros</summary>
-          <ul class="muted">
-            <li><code>?_page=1</code> e <code>?_limit=10</code> — paginação (usa header <code>X-Total-Count</code>).</li>
-            <li><code>?q=texto</code> — busca simples por texto.</li>
-            <li><code>?_meta=1</code> — muda o retorno para <code>{ data, meta }</code>.</li>
+        <details class="rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+          <summary class="cursor-pointer font-medium">Parâmetros</summary>
+          <ul class="mt-2 text-sm text-slate-700 dark:text-slate-200 space-y-1">
+            <li><code class="bg-slate-100 dark:bg-slate-900/60 px-1 py-0.5 rounded text-xs">?_page=1</code> + <code class="bg-slate-100 dark:bg-slate-900/60 px-1 py-0.5 rounded text-xs">?_limit=10</code> — paginação (usa header <code class="text-xs">X-Total-Count</code>).</li>
+            <li><code class="bg-slate-100 dark:bg-slate-900/60 px-1 py-0.5 rounded text-xs">?q=texto</code> — busca textual.</li>
+            <li><code class="bg-slate-100 dark:bg-slate-900/60 px-1 py-0.5 rounded text-xs">?_meta=1</code> — retorna <code class="text-xs">{ data, meta }</code>.</li>
           </ul>
+          <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">Problemas de CORS? Libere a origem do site na variável <code>CORS_ORIGIN</code> ou sirva esta página no mesmo domínio da API.</p>
         </details>
 
-        <details>
-          <summary>Exemplos (cURL)</summary>
-          <pre>
+        <details class="rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+          <summary class="cursor-pointer font-medium">Exemplos (cURL)</summary>
+          <div class="mt-3 relative">
+            <button id="copyCurl" class="absolute right-2 top-2 rounded-md border border-slate-300 dark:border-slate-700 bg-white/80 dark:bg-slate-900/60 text-xs px-2 py-1 hover:bg-slate-100 dark:hover:bg-slate-800">Copiar</button>
+            <pre id="curlExamples" class="text-xs leading-5 bg-slate-900 text-slate-100 rounded-lg p-3 overflow-auto shadow-inner">
 # LISTAR (array)
-curl http://localhost:8000/posts
+curl https://fakeapi.aioher.com/posts
 
 # LISTAR paginado + meta
-curl "http://localhost:8000/posts?_page=1&_limit=5&_meta=1"
+curl "https://fakeapi.aioher.com/posts?_page=1&_limit=5&_meta=1"
 
 # DETALHE
-curl http://localhost:8000/posts/1
+curl https://fakeapi.aioher.com/posts/1
 
 # CRIAR
-curl -X POST http://localhost:8000/posts \
+curl -X POST https://fakeapi.aioher.com/posts \
   -H "Content-Type: application/json" \
   -d '{"title":"Novo post","body":"conteúdo"}'
-          </pre>
+            </pre>
+          </div>
         </details>
-      </section>
-    </div>
+      </div>
+    </section>
+  </main>
 
-    <footer>
-      <span>Projeto: <strong>fakeapi 1.4</strong></span>
-      <span>Créditos: <a href="https://github.com/samuelikz/fakeapi" target="_blank" rel="noopener">github/samuelikz/fakeapi</a></span>
-    </footer>
-  </div>
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 py-6 text-sm text-slate-600 dark:text-slate-300 flex flex-wrap items-center gap-x-4 gap-y-2">
+      <span>MIT © <span id="year"></span> fakeapi</span>
+      <span class="hidden sm:inline">•</span>
+      <span class="inline-flex items-center gap-2">
+        Forks: <strong id="forks">—</strong>
+        <a class="underline decoration-dotted hover:text-pink-600 dark:hover:text-pink-400" href="https://github.com/samuelikz/fakeapi/fork" target="_blank" rel="noopener">Fazer fork</a>
+      </span>
+      <span class="hidden sm:inline">•</span>
+      <a class="underline decoration-dotted hover:text-pink-600 dark:hover:text-pink-400" href="https://fakeapi.aioher.com/" target="_blank" rel="noopener">fakeapi.aioher.com</a>
+      <span class="hidden sm:inline">•</span>
+      <a class="underline decoration-dotted hover:text-pink-600 dark:hover:text-pink-400" href="https://github.com/samuelikz/fakeapi" target="_blank" rel="noopener">Repositório</a>
+    </div>
+  </footer>
 
   <script>
-    // ===== Tema (claro/escuro) =====
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const saved = localStorage.getItem('fakeapi_theme');
-    const initial = saved ? saved : (prefersDark ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', initial);
+    const $  = (s) => document.querySelector(s);
+    const $$ = (s) => [...document.querySelectorAll(s)];
 
-    document.getElementById('themeBtn').addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('fakeapi_theme', next);
+    const listEl   = $('#list');
+    const statusEl = $('#status');
+    const apiLink  = $('#apiLink'); // do menu mobile
+    const navToggle= $('#navToggle');
+    const mobileMenu = $('#mobileMenu');
+
+    // --- Navbar mobile toggle ---
+    function closeMenu(){ mobileMenu.classList.add('hidden'); navToggle.setAttribute('aria-expanded','false'); }
+    function openMenu(){ mobileMenu.classList.remove('hidden'); navToggle.setAttribute('aria-expanded','true'); }
+    navToggle.addEventListener('click', () => {
+      const open = navToggle.getAttribute('aria-expanded') === 'true';
+      open ? closeMenu() : openMenu();
+    });
+    window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMenu(); });
+    window.addEventListener('click', (e)=>{ if(!mobileMenu.contains(e.target) && !navToggle.contains(e.target)) closeMenu(); });
+
+    // --- Tema (desktop + mobile) ---
+    $$('.js-theme-btn, [data-role="themeBtn"]').forEach(btn=>{
+      btn.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        try { localStorage.setItem('fakeapi_theme', isDark ? 'dark' : 'light'); } catch {}
+      });
     });
 
-    // ===== Lista de recursos =====
-    const itemLabel = (n) => (n === 1 ? 'item' : 'items');
-    fetch('/__resources')
-      .then(r => r.json())
-      .then(rows => {
-        const ul = document.getElementById('list');
-        ul.innerHTML = '';
-        if (!rows.length) {
-          ul.innerHTML = '<li class="empty">Nenhum recurso encontrado.</li>';
-          return;
-        }
-        rows.forEach(({ name, count }) => {
-          const li = document.createElement('li');
-          li.className = 'resource';
-          li.innerHTML = `<a href="/${name}">/${name}</a>
-                          <span class="count">${count} ${itemLabel(count)}</span>`;
-          ul.appendChild(li);
-        });
-      })
-      .catch(() => {
-        document.getElementById('list').innerHTML =
-          '<li class="empty">Falha ao carregar recursos.</li>';
+    // --- Base URL (múltiplos inputs) ---
+    const baseInputs = $$('[data-role="baseInput"]');
+
+    function defaultBase() {
+      if (location.hostname.endsWith('aioher.com')) return location.origin;
+      return 'https://fakeapi.aioher.com';
+    }
+    function setBase(u) {
+      const clean = (u || '').replace(/\/$/, '');
+      baseInputs.forEach(inp => inp.value = clean);
+      if (apiLink){ apiLink.href = clean || '#'; apiLink.textContent = (clean || '').replace(/^https?:\/\//,'') || 'defina a Base URL'; }
+      // atualizar exemplos
+      $('#curlExamples').textContent =
+`# LISTAR (array)
+curl ${clean}/posts
+
+# LISTAR paginado + meta
+curl "${clean}/posts?_page=1&_limit=5&_meta=1"
+
+# DETALHE
+curl ${clean}/posts/1
+
+# CRIAR
+curl -X POST ${clean}/posts \\
+  -H "Content-Type: application/json" \\
+  -d '{"title":"Novo post","body":"conteúdo"}'`;
+      try { localStorage.setItem('fakeapi_base', clean); } catch {}
+    }
+    setBase(localStorage.getItem('fakeapi_base') || defaultBase());
+    baseInputs.forEach(inp => inp.addEventListener('change', (e)=> setBase(e.target.value)));
+
+    // Helpers
+    async function getJSON(url, { timeout = 8000 } = {}) {
+      const ctrl = new AbortController();
+      const to = setTimeout(() => ctrl.abort(), timeout);
+      try {
+        const res = await fetch(url, { signal: ctrl.signal, headers: { 'Accept': 'application/json' }});
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const ct = res.headers.get('content-type') || '';
+        return ct.includes('json') ? res.json() : res.text();
+      } finally { clearTimeout(to); }
+    }
+    function itemLabel(n) { return n === 1 ? 'item' : 'itens'; }
+    function currentBase(){ return (baseInputs[0]?.value || '').replace(/\/$/,''); }
+
+    function renderResources(base, rows) {
+      listEl.innerHTML = '';
+      if (!rows.length) {
+        listEl.innerHTML = `<li class="px-3 py-3 text-sm text-slate-500">Nenhum recurso encontrado.</li>`;
+        statusEl.textContent = 'OK, sem recursos.';
+        return;
+      }
+      rows.forEach(({ name, count }) => {
+        const safeCount = Number(count ?? 0);
+        const li = document.createElement('li');
+        li.className = "px-3 py-3 hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors";
+        li.innerHTML = `
+          <div class="flex items-center justify-between gap-3">
+            <a class="font-medium text-pink-600 dark:text-pink-400 hover:underline" href="${base}/${name}" target="_blank" rel="noopener">/${name}</a>
+            <span class="text-xs text-slate-500 dark:text-slate-400">${safeCount} ${itemLabel(safeCount)}</span>
+          </div>`;
+        listEl.appendChild(li);
       });
+      statusEl.innerHTML = '<span class="text-emerald-600 dark:text-emerald-400">Recursos carregados.</span>';
+    }
+
+    async function loadResources() {
+      const base = currentBase();
+      listEl.innerHTML = `<li class="px-3 py-3 text-sm text-slate-500">Carregando…</li>`;
+      statusEl.textContent = 'Carregando…';
+      try {
+        const rows = await getJSON(`${base}/__resources`);
+        if (Array.isArray(rows)) return renderResources(base, rows);
+      } catch {}
+      try {
+        const rows2 = await getJSON(`${base}/_resources`);
+        if (Array.isArray(rows2)) return renderResources(base, rows2);
+      } catch {}
+      try {
+        const posts = await getJSON(`${base}/posts`);
+        if (Array.isArray(posts)) return renderResources(base, [{ name: 'posts', count: posts.length }]);
+      } catch {}
+      listEl.innerHTML = `<li class="px-3 py-3 text-sm text-rose-600">Falha ao carregar recursos.</li>`;
+      statusEl.innerHTML = 'Erro ao buscar. <span class="text-rose-600">Pode ser CORS</span>: libere a origem do site na API (<code class="text-xs">CORS_ORIGIN</code>) ou hospede esta página no mesmo domínio.';
+    }
+
+    async function detect() {
+      const base = currentBase();
+      statusEl.textContent = 'Testando /health…';
+      try {
+        await getJSON(`${base}/health`, { timeout: 5000 });
+        statusEl.innerHTML = '<span class="text-emerald-600 dark:text-emerald-400">/health OK</span>';
+        setBase(base);
+        loadResources();
+      } catch {
+        statusEl.innerHTML = '<span class="text-rose-600">/health falhou</span>. Verifique a URL e CORS.';
+      }
+    }
+
+    // Ações UI (desktop + mobile)
+    $$('[data-role="detectBtn"]').forEach(b => b.addEventListener('click', detect));
+    $$('[data-role="reloadBtn"]').forEach(b => b.addEventListener('click', loadResources));
+
+    // Copiar cURL
+    $('#copyCurl').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText($('#curlExamples').textContent);
+        const btn = $('#copyCurl'); const prev = btn.textContent; btn.textContent = 'Copiado!';
+        setTimeout(() => btn.textContent = prev, 1200);
+      } catch {}
+    });
+
+    // Forks
+    fetch('https://api.github.com/repos/samuelikz/fakeapi')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(meta => { const el = document.getElementById('forks'); if (el) el.textContent = (typeof meta.forks_count === 'number') ? meta.forks_count : '0'; })
+      .catch(() => { const el = document.getElementById('forks'); if (el) el.textContent = '—'; });
+
+    // Ano
+    const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
+
+    // Start
+    loadResources();
   </script>
 </body>
 </html>
