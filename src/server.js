@@ -1,85 +1,74 @@
 require('dotenv').config();
 const express = require('express');
-const path = require('path');              // ⬅️ novo
-const db = require('./db');
+const path = require('path');
+
+// Configurações
+const APP_CONFIG = require('./config/app');
+
+// Middlewares
 const cors = require('./middleware/cors');
 const logger = require('./middleware/logger');
+const { validateJSON, validateId, validatePagination } = require('./middleware/validation');
 
+// Rotas
+const systemRoutes = require('./routes/systemRoutes');
+const resourceRoutes = require('./routes/resourceRoutes');
+
+// Inicialização do app
 const app = express();
-const port = process.env.PORT || 8000;
+const port = APP_CONFIG.port;
 
-app.use(express.json());
+// Middlewares globais
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cors);
 app.use(logger);
 
-// servir a página separada (public/index.html)
+// Servir arquivos estáticos
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
-// endpoint usado pela página para listar recursos com contagem
-app.get('/__resources', (_req, res) => {
-  res.json(db.counts()); // [{ name, count }]
+// Middleware de validação global
+app.use(validateJSON);
+
+// Rotas do sistema (devem vir antes das rotas de recursos)
+app.use('/', systemRoutes);
+
+// Rotas de recursos com validação específica
+app.use('/', validatePagination, resourceRoutes);
+
+// Middleware de tratamento de erros
+app.use((err, req, res, next) => {
+  console.error('Unhandled error:', err);
+  res.status(500).json({
+    error: 'Internal Server Error',
+    message: APP_CONFIG.environment === 'development' ? err.message : 'Something went wrong'
+  });
 });
 
-// (opcional) ajuda em texto
-app.get('/_docs', (_req, res) => {
-  res.type('text').send(`
-GET /:resource          -> array (q, _page, _limit, _meta=1 para metadata)
-GET /:resource/:id
-POST/PUT/PATCH/DELETE /:resource/:id
-Acesse / para a página inicial.
-`);
+// Middleware para rotas não encontradas
+app.use('*', (req, res) => {
+  res.status(404).json({
+    error: 'Not Found',
+    message: `Route ${req.originalUrl} not found`,
+    availableRoutes: [
+      'GET /__resources - List available resources',
+      'GET /_docs - API documentation',
+      'GET /:resource - List items from a resource',
+      'GET /:resource/:id - Get specific item',
+      'POST /:resource - Create new item',
+      'PUT /:resource/:id - Update item completely',
+      'PATCH /:resource/:id - Update item partially',
+      'DELETE /:resource/:id - Delete item'
+    ]
+  });
 });
 
-// ==== CRUD dinâmico (mesmo que você já tinha) ====
-function mountCollection(resource) {
-  app.get(`/${resource}`, (req, res) => {
-    const { items, total, page, limit } = db.list(resource, req.query);
-    res.set('X-Total-Count', String(total));
-    const wantMeta = String(req.query._meta || '0') === '1';
-    if (!wantMeta) return res.json(items);
-    const pages = Math.ceil(total / (limit || 1));
-    res.json({ data: items, meta: { page, limit, total, pages } });
-  });
-
-  app.get(`/${resource}/:id`, (req, res) => {
-    const item = db.get(resource, req.params.id);
-    if (!item) return res.status(404).json({ error: 'Not Found' });
-    res.json(item);
-  });
-
-  app.post(`/${resource}`, (req, res) => {
-    const created = db.create(resource, req.body || {});
-    res.status(201).json(created);
-  });
-
-  app.put(`/${resource}/:id`, (req, res) => {
-    const updated = db.update(resource, req.params.id, req.body || {}, false);
-    if (!updated) return res.status(404).json({ error: 'Not Found' });
-    res.json(updated);
-  });
-
-  app.patch(`/${resource}/:id`, (req, res) => {
-    const updated = db.update(resource, req.params.id, req.body || {}, true);
-    if (!updated) return res.status(404).json({ error: 'Not Found' });
-    res.json(updated);
-  });
-
-  app.delete(`/${resource}/:id`, (req, res) => {
-    const removed = db.remove(resource, req.params.id);
-    if (!removed) return res.status(404).json({ error: 'Not Found' });
-    res.status(204).send();
-  });
-}
-
-db.collections().forEach(mountCollection);
-
-app.post('/_ensure/:resource', (req, res) => {
-  const resource = req.params.resource;
-  const created = db.create(resource, req.body || {});
-  mountCollection(resource);
-  res.status(201).json(created);
-});
-
+// Inicialização do servidor
 app.listen(port, () => {
-  console.log(`✅ JSON server on http://localhost:${port}`);
+  console.log(`🚀 Fake API Server running on http://localhost:${port}`);
+  console.log(`📚 Documentation available at http://localhost:${port}/_docs`);
+  console.log(`🌐 Web interface available at http://localhost:${port}`);
+  console.log(`⚙️  Environment: ${APP_CONFIG.environment}`);
 });
+
+module.exports = app;

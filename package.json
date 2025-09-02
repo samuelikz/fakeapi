@@ -1,7 +1,7 @@
 {
   "name": "fakeapi",
   "version": "1.0.0",
-  "description": "Fake API file-based com Express",
+  "description": "Fake API RESTful com arquitetura limpa e separação de responsabilidades",
   "repository": "https://github.com/samuelikz/fakeapi",
   "author": "Samuel (github.com/samuelikz)",
   "main": "src/server.js",
@@ -9,13 +9,25 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
-    "reset": "node -e \"require('fs').writeFileSync('./data/db.json', JSON.stringify({ posts: [], users: [] }, null, 2))\""
+    "reset": "node -e \"require('./src/services/databaseService').reset()\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
-  }
+  },
+  "keywords": [
+    "fake-api",
+    "rest-api",
+    "json-server",
+    "express",
+    "nodejs",
+    "development"
+  ],
+  "license": "MIT"
 }
