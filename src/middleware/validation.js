@@ -23,14 +23,18 @@ function validateJSON(req, res, next) {
  */
 function validateId(req, res, next) {
   const id = req.params.id;
-  
-  if (!id || isNaN(Number(id)) || Number(id) <= 0) {
+
+  // Regular expression to match IDs like 'p001', 'p123', etc.
+  // It checks for 'p' followed by one or more digits.
+  const alphanumericPattern = /^p\d+$/;
+
+  if (!id || (!(alphanumericPattern.test(id) || (!isNaN(Number(id)) && Number(id) > 0)))) {
     return res.status(400).json({
       error: 'Bad Request',
-      message: 'Invalid ID parameter. ID must be a positive number.'
+      message: 'Invalid ID parameter. ID must be a positive number or start with "p" followed by numbers (e.g., p001).'
     });
   }
-  
+
   next();
 }
 

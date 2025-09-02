@@ -5,20 +5,1502 @@
       "title": "Bem-vindo à Fake API",
       "content": "Esta é uma API RESTful completa com arquitetura limpa e separação de responsabilidades.",
       "author": "Samuel",
-      "tags": ["api", "rest", "nodejs"],
+      "tags": [
+        "api",
+        "rest",
+        "nodejs"
+      ],
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"
     }
   ],
-  "users": [
+  "cursos": [
     {
-      "id": 1,
-      "name": "Samuel Nunes",
-      "email": "samuel@example.com",
-      "role": "admin",
-      "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z"
+      "id": "p002",
+      "perfilDoColaborador": {
+        "nomeCompleto": "Germano de Souza",
+        "emailCorporativo": "germano.desouza@example.com",
+        "celular": "(22) 7919-9188",
+        "cargo": "Assistente",
+        "lotacaoSetor": "Jurídico",
+        "matricula": "20250002",
+        "dataDeAniversario": "1997-04-19T05:59:46.265Z",
+        "nomeSocial": "",
+        "emailPessoal": "germano.desouza@example.com",
+        "telefone": "(34) 1191-4805",
+        "dataDeNascimento": null
+      },
+      "dadosPessoais": {
+        "dependentes": [],
+        "nomeDaMae": "Maria de Souza",
+        "estadoCivil": "Solteiro",
+        "nacionalidade": "Brasileiro",
+        "naturalidadeCidadeUF": "Franca - Distrito Federal",
+        "sexo": "Masculino",
+        "raca": "Preto",
+        "dataDeNascimento": "1997-04-19T05:59:46.265Z",
+        "nomeDoPai": "José de Souza",
+        "nomeDoConjuge": "",
+        "genero": "Homem cis",
+        "pronome": "ele/dele",
+        "cpf": "79386089443"
+      },
+      "endereco": {
+        "cep": "50033073",
+        "rua": "Rua Exemplo",
+        "bairro": "Boa Vista",
+        "cidade": "Recife",
+        "uf": "PE",
+        "complemento": "Casa"
+      },
+      "formacao": {
+        "nomeDoCurso": "Sistemas de Informação",
+        "nomeDaPos": "",
+        "nomeDoMestrado": "",
+        "nomeDoDoutorado": "",
+        "nomeDoPosDoutorado": ""
+      },
+      "dadosContratuais": {
+        "portariaDeNomeacao": "Portaria nº 999/2023",
+        "dataDeAdmissao": "2009-04-18T09:17:10.784Z",
+        "regimeDeContratacao": "Efetivo",
+        "simbologia": "NM",
+        "orgaoDeOrigem": "",
+        "exerceFuncaoFora": "Não"
+      },
+      "jornadaDeTrabalho": {
+        "modeloDeTrabalho": "Remoto",
+        "cargaHorariaSemanal": "40h",
+        "horarioDeTrabalho": "08:00 às 17:00",
+        "escalaDeTrabalho": "Segunda a Sexta"
+      },
+      "documentacao": {
+        "orgao": "SSP-PE",
+        "registro": "3054340",
+        "emissao": "2002-03-10T03:00:00.000Z",
+        "uf": "PE",
+        "registroProfissional": {
+          "emissao": null
+        },
+        "certidaoCasamento": {
+          "data": null
+        },
+        "identidade": {
+          "emissao": null
+        }
+      },
+      "dadosDeSaude": {
+        "dataDoExame": "2024-07-30T03:00:00.000Z"
+      },
+      "dadosDaConta": {
+        "banco": "Bradesco",
+        "agencia": "5895",
+        "conta": "12596"
+      }
+    },
+    {
+      "id": "p003",
+      "perfilDoColaborador": {
+        "nomeCompleto": "Salvador Pinto",
+        "emailCorporativo": "salvador.pinto@example.com",
+        "celular": "(09) 5770-3835",
+        "cargo": "Analista",
+        "lotacaoSetor": "TI",
+        "matricula": "20250003",
+        "dataDeAniversario": "1958-10-08T18:31:23.640Z",
+        "nomeSocial": "",
+        "emailPessoal": "salvador.pinto@example.com",
+        "telefone": "(17) 2552-7024"
+      },
+      "dadosPessoais": {
+        "dependentes": [],
+        "nomeDaMae": "Maria Pinto",
+        "estadoCivil": "Casado",
+        "nacionalidade": "Brasileiro",
+        "naturalidadeCidadeUF": "Maracanaú - Goiás",
+        "sexo": "Masculino",
+        "raca": "Branco",
+        "dataDeNascimento": "1958-10-08T18:31:23.640Z",
+        "nomeDoPai": "José Pinto",
+        "nomeDoConjuge": "",
+        "genero": "Homem cis",
+        "pronome": "ele/dele",
+        "cpf": "39342334040"
+      },
+      "endereco": {
+        "cep": "50062749",
+        "rua": "Rua Exemplo",
+        "bairro": "Boa Vista",
+        "cidade": "Recife",
+        "uf": "PE",
+        "complemento": "Casa"
+      },
+      "formacao": {
+        "nomeDoCurso": "Engenharia",
+        "nomeDaPos": "",
+        "nomeDoMestrado": "",
+        "nomeDoDoutorado": "",
+        "nomeDoPosDoutorado": ""
+      },
+      "dadosContratuais": {
+        "portariaDeNomeacao": "Portaria nº 503/2020",
+        "dataDeAdmissao": "2012-07-24T05:56:43.042Z",
+        "regimeDeContratacao": "Comissionado",
+        "simbologia": "NM",
+        "orgaoDeOrigem": "",
+        "exerceFuncaoFora": "Não"
+      },
+      "jornadaDeTrabalho": {
+        "modeloDeTrabalho": "Híbrido",
+        "cargaHorariaSemanal": "40h",
+        "horarioDeTrabalho": "08:00 às 17:00",
+        "escalaDeTrabalho": "Segunda a Sexta"
+      },
+      "documentacao": {
+        "orgao": "SSP-PE",
+        "registro": "9611396",
+        "emissao": "2008-03-10T03:00:00.000Z",
+        "uf": "PE"
+      },
+      "dadosDeSaude": {
+        "dataDoExame": "2024-07-30T03:00:00.000Z"
+      },
+      "dadosDaConta": {
+        "banco": "Bradesco",
+        "agencia": "8432",
+        "conta": "62300"
+      }
+    },
+    {
+      "id": "p004",
+      "perfilDoColaborador": {
+        "nomeCompleto": "Floriano da Rosa",
+        "emailCorporativo": "floriano.darosa@example.com",
+        "celular": "(54) 1842-5152",
+        "cargo": "Analista",
+        "lotacaoSetor": "RH",
+        "matricula": "20250004",
+        "dataDeAniversario": "1983-06-12T10:47:14.755Z",
+        "nomeSocial": "",
+        "emailPessoal": "floriano.darosa@example.com",
+        "telefone": "(51) 2383-2113"
+      },
+      "dadosPessoais": {
+        "dependentes": [],
+        "nomeDaMae": "Maria da Rosa",
+        "estadoCivil": "Casado",
+        "nacionalidade": "Brasileiro",
+        "naturalidadeCidadeUF": "Maracanaú - Sergipe",
+        "sexo": "Masculino",
+        "raca": "Pardo",
+        "dataDeNascimento": "1983-06-12T10:47:14.755Z",
+        "nomeDoPai": "José da Rosa",
+        "nomeDoConjuge": "",
+        "genero": "Homem cis",
+        "pronome": "ele/dele",
+        "cpf": "67238517577"
+      },
+      "endereco": {
+        "cep": "50096743",
+        "rua": "Rua Exemplo",
+        "bairro": "Boa Vista",
+        "cidade": "Recife",
+        "uf": "PE",
+        "complemento": "Casa"
+      },
+      "formacao": {
+        "nomeDoCurso": "Sistemas de Informação",
+        "nomeDaPos": "",
+        "nomeDoMestrado": "",
+        "nomeDoDoutorado": "",
+        "nomeDoPosDoutorado": ""
+      },
+      "dadosContratuais": {
+        "portariaDeNomeacao": "Portaria nº 521/2022",
+        "dataDeAdmissao": "2017-03-26T02:52:38.442Z",
+        "regimeDeContratacao": "Efetivo",
+        "simbologia": "NM",
+        "orgaoDeOrigem": "",
+        "exerceFuncaoFora": "Não"
+      },
+      "jornadaDeTrabalho": {
+        "modeloDeTrabalho": "Híbrido",
+        "cargaHorariaSemanal": "40h",
+        "horarioDeTrabalho": "08:00 às 17:00",
+        "escalaDeTrabalho": "Segunda a Sexta"
+      },
+      "documentacao": {
+        "orgao": "SSP-PE",
+        "registro": "6423148",
+        "emissao": "2003-06-10T03:00:00.000Z",
+        "uf": "PE"
+      },
+      "dadosDeSaude": {
+        "dataDoExame": "2024-07-30T03:00:00.000Z"
+      },
+      "dadosDaConta": {
+        "banco": "Bradesco",
+        "agencia": "7681",
+        "conta": "66878"
+      }
+    },
+    {
+      "id": "p005",
+      "perfilDoColaborador": {
+        "nomeCompleto": "Carina Porto",
+        "emailCorporativo": "carina.porto@example.com",
+        "celular": "(41) 0736-9585",
+        "cargo": "Gestor",
+        "lotacaoSetor": "RH",
+        "matricula": "20250005",
+        "dataDeAniversario": "1990-10-15T05:57:42.690Z",
+        "nomeSocial": "",
+        "emailPessoal": "carina.porto@example.com",
+        "telefone": "(72) 8709-9463"
+      },
+      "dadosPessoais": {
+        "dependentes": [],
+        "nomeDaMae": "Maria Porto",
+        "estadoCivil": "Solteiro",
+        "nacionalidade": "Brasileiro",
+        "naturalidadeCidadeUF": "Embu - Acre",
+        "sexo": "Feminino",
+        "raca": "Pardo",
+        "dataDeNascimento": "1990-10-15T05:57:42.690Z",
+        "nomeDoPai": "José Porto",
+        "nomeDoConjuge": "",
+        "genero": "Mulher cis",
+        "pronome": "ela/dela",
+        "cpf": "69826240934"
+      },
+      "endereco": {
+        "cep": "50033505",
+        "rua": "Rua Exemplo",
+        "bairro": "Boa Vista",
+        "cidade": "Recife",
+        "uf": "PE",
+        "complemento": "Casa"
+      },
+      "formacao": {
+        "nomeDoCurso": "Sistemas de Informação",
+        "nomeDaPos": "",
+        "nomeDoMestrado": "",
+        "nomeDoDoutorado": "",
+        "nomeDoPosDoutorado": ""
+      },
+      "dadosContratuais": {
+        "portariaDeNomeacao": "Portaria nº 652/2020",
+        "dataDeAdmissao": "2006-03-21T00:53:55.800Z",
+        "regimeDeContratacao": "Comissionado",
+        "simbologia": "NM",
+        "orgaoDeOrigem": "",
+        "exerceFuncaoFora": "Não"
+      },
+      "jornadaDeTrabalho": {
+        "modeloDeTrabalho": "Presencial",
+        "cargaHorariaSemanal": "40h",
+        "horarioDeTrabalho": "08:00 às 17:00",
+        "escalaDeTrabalho": "Segunda a Sexta"
+      },
+      "documentacao": {
+        "orgao": "SSP-PE",
+        "registro": "7516693",
+        "emissao": "2006-04-10T03:00:00.000Z",
+        "uf": "PE"
+      },
+      "dadosDeSaude": {
+        "dataDoExame": "2024-07-30T03:00:00.000Z"
+      },
+      "dadosDaConta": {
+        "banco": "Caixa",
+        "agencia": "4762",
+        "conta": "17834"
+      }
+    },
+    {
+      "id": "p006",
+      "perfilDoColaborador": {
+        "nomeCompleto": "Hélvio Oliveira",
+        "emailCorporativo": "helvio.oliveira@example.com",
+        "celular": "(42) 2508-4085",
+        "cargo": "Gestor",
+        "lotacaoSetor": "TI",
+        "matricula": "20250006",
+        "dataDeAniversario": "1962-08-28T23:46:06.883Z",
+        "nomeSocial": "",
+        "emailPessoal": "helvio.oliveira@example.com",
+        "telefone": "(53) 5739-7635"
+      },
+      "dadosPessoais": {
+        "dependentes": [],
+        "nomeDaMae": "Maria Oliveira",
+        "estadoCivil": "Divorciado",
+        "nacionalidade": "Brasileiro",
+        "naturalidadeCidadeUF": "Itaboraí - Pará",
+        "sexo": "Masculino",
+        "raca": "Branco",
+        "dataDeNascimento": "1962-08-28T23:46:06.883Z",
+        "nomeDoPai": "José Oliveira",
+        "nomeDoConjuge": "",
+        "genero": "Homem cis",
+        "pronome": "ele/dele",
+        "cpf": "28960684692"
+      },
+      "endereco": {
+        "cep": "50004493",
+        "rua": "Rua Exemplo",
+        "bairro": "Boa Vista",
+        "cidade": "Recife",
+        "uf": "PE",
+        "complemento": "Casa"
+      },
+      "formacao": {
+        "nomeDoCurso": "Sistemas de Informação",
+        "nomeDaPos": "",
+        "nomeDoMestrado": "",
+        "nomeDoDoutorado": "",
+        "nomeDoPosDoutorado": ""
+      },
+      "dadosContratuais": {
+        "portariaDeNomeacao": "Portaria nº 181/2024",
+        "dataDeAdmissao": "2021-06-12T05:09:59.487Z",
+        "regimeDeContratacao": "Efetivo",
+        "simbologia": "NM",
+        "orgaoDeOrigem": "",
+        "exerceFuncaoFora": "Não"
+      },
+      "jornadaDeTrabalho": {
+        "modeloDeTrabalho": "Presencial",
+        "cargaHorariaSemanal": "40h",
+        "horarioDeTrabalho": "08:00 às 17:00",
+        "escalaDeTrabalho": "Segunda a Sexta"
+      },
+      "documentacao": {
+        "orgao": "SSP-PE",
+        "registro": "6900511",
+        "emissao": "2007-07-10T03:00:00.000Z",
+        "uf": "PE"
+      },
+      "dadosDeSaude": {
+        "dataDoExame": "2024-07-30T03:00:00.000Z"
+      },
+      "dadosDaConta": {
+        "banco": "Caixa",
+        "agencia": "3039",
+        "conta": "72121"
+      }
+    },
+    {
+      "id": "p007",
+      "perfilDoColaborador": {
+        "nomeCompleto": "Quiliano Pires",
+        "emailCorporativo": "quiliano.pires@example.com",
+        "celular": "(57) 7115-6915",
+        "cargo": "Técnico",
+        "lotacaoSetor": "Financeiro",
+        "matricula": "20250007",
+        "dataDeAniversario": "1963-08-31T03:59:46.634Z",
+        "nomeSocial": "",
+        "emailPessoal": "quiliano.pires@example.com",
+        "telefone": "(49) 0190-8653"
+      },
+      "dadosPessoais": {
+        "dependentes": [],
+        "nomeDaMae": "Maria Pires",
+        "estadoCivil": "Casado",
+        "nacionalidade": "Brasileiro",
+        "naturalidadeCidadeUF": "Criciúma - Santa Catarina",
+        "sexo": "Masculino",
+        "raca": "Branco",
+        "dataDeNascimento": "1963-08-31T03:59:46.634Z",
+        "nomeDoPai": "José Pires",
+        "nomeDoConjuge": "",
+        "genero": "Homem cis",
+        "pronome": "ele/dele",
+        "cpf": "92402899485"
+      },
+      "endereco": {
+        "cep": "50075139",
+        "rua": "Rua Exemplo",
+        "bairro": "Boa Vista",
+        "cidade": "Recife",
+        "uf": "PE",
+        "complemento": "Casa"
+      },
+      "formacao": {
+        "nomeDoCurso": "Sistemas de Informação",
+        "nomeDaPos": "",
+        "nomeDoMestrado": "",
+        "nomeDoDoutorado": "",
+        "nomeDoPosDoutorado": ""
+      },
+      "dadosContratuais": {
+        "portariaDeNomeacao": "Portaria nº 997/2021",
+        "dataDeAdmissao": "2002-10-13T22:04:16.445Z",
+        "regimeDeContratacao": "Efetivo",
+        "simbologia": "NM",
+        "orgaoDeOrigem": "",
+        "exerceFuncaoFora": "Não"
+      },
+      "jornadaDeTrabalho": {
+        "modeloDeTrabalho": "Remoto",
+        "cargaHorariaSemanal": "40h",
+        "horarioDeTrabalho": "08:00 às 17:00",
+        "escalaDeTrabalho": "Segunda a Sexta"
+      },
+      "documentacao": {
+        "orgao": "SSP-PE",
+        "registro": "4853588",
+        "emissao": "2007-09-10T03:00:00.000Z",
+        "uf": "PE"
+      },
+      "dadosDeSaude": {
+        "dataDoExame": "2024-07-30T03:00:00.000Z"
+      },
+      "dadosDaConta": {
+        "banco": "Caixa",
+        "agencia": "4996",
+        "conta": "42772"
+      }
+    },
+    {
+      "id": "p008",
+      "perfilDoColaborador": {
+        "nomeCompleto": "Cândice Moreira",
+        "emailCorporativo": "candice.moreira@example.com",
+        "celular": "(56) 7647-6298",
+        "cargo": "Técnico",
+        "lotacaoSetor": "Jurídico",
+        "matricula": "20250008",
+        "dataDeAniversario": "1954-02-10T02:34:29.534Z",
+        "nomeSocial": "",
+        "emailPessoal": "candice.moreira@example.com",
+        "telefone": "(34) 3600-4664"
+      },
+      "dadosPessoais": {
+        "dependentes": [],
+        "nomeDaMae": "Maria Moreira",
+        "estadoCivil": "Divorciado",
+        "nacionalidade": "Brasileiro",
+        "naturalidadeCidadeUF": "Itajaí - Mato Grosso do Sul",
+        "sexo": "Feminino",
+        "raca": "Pardo",
+        "dataDeNascimento": "1954-02-10T02:34:29.534Z",
+        "nomeDoPai": "José Moreira",
+        "nomeDoConjuge": "",
+        "genero": "Mulher cis",
+        "pronome": "ela/dela",
+        "cpf": "80213177541"
+      },
+      "endereco": {
+        "cep": "50032141",
+        "rua": "Rua Exemplo",
+        "bairro": "Boa Vista",
+        "cidade": "Recife",
+        "uf": "PE",
+        "complemento": "Casa"
+      },
+      "formacao": {
+        "nomeDoCurso": "Direito",
+        "nomeDaPos": "",
+        "nomeDoMestrado": "",
+        "nomeDoDoutorado": "",
+        "nomeDoPosDoutorado": ""
+      },
+      "dadosContratuais": {
+        "portariaDeNomeacao": "Portaria nº 242/2024",
+        "dataDeAdmissao": "2011-08-09T19:25:43.290Z",
+        "regimeDeContratacao": "Efetivo",
+        "simbologia": "NM",
+        "orgaoDeOrigem": "",
+        "exerceFuncaoFora": "Não"
+      },
+      "jornadaDeTrabalho": {
+        "modeloDeTrabalho": "Híbrido",
+        "cargaHorariaSemanal": "40h",
+        "horarioDeTrabalho": "08:00 às 17:00",
+        "escalaDeTrabalho": "Segunda a Sexta"
+      },
+      "documentacao": {
+        "orgao": "SSP-PE",
+        "registro": "9927285",
+        "emissao": "2004-09-10T03:00:00.000Z",
+        "uf": "PE"
+      },
+      "dadosDeSaude": {
+        "dataDoExame": "2024-07-30T03:00:00.000Z"
+      },
+      "dadosDaConta": {
+        "banco": "Bradesco",
+        "agencia": "3116",
+        "conta": "87207"
+      }
+    },
+    {
+      "id": "p009",
+      "perfilDoColaborador": {
+        "nomeCompleto": "Liliam Castro",
+        "emailCorporativo": "liliam.castro@example.com",
+        "celular": "(85) 1678-8271",
+        "cargo": "Técnico",
+        "lotacaoSetor": "Financeiro",
+        "matricula": "20250009",
+        "dataDeAniversario": "1969-02-10T20:48:10.472Z",
+        "nomeSocial": "",
+        "emailPessoal": "liliam.castro@example.com",
+        "telefone": "(62) 3441-8674"
+      },
+      "dadosPessoais": {
+        "dependentes": [],
+        "nomeDaMae": "Maria Castro",
+        "estadoCivil": "Divorciado",
+        "nacionalidade": "Brasileiro",
+        "naturalidadeCidadeUF": "Santarém - São Paulo",
+        "sexo": "Feminino",
+        "raca": "Preto",
+        "dataDeNascimento": "1969-02-10T20:48:10.472Z",
+        "nomeDoPai": "José Castro",
+        "nomeDoConjuge": "",
+        "genero": "Mulher cis",
+        "pronome": "ela/dela",
+        "cpf": "10328691809"
+      },
+      "endereco": {
+        "cep": "50015533",
+        "rua": "Rua Exemplo",
+        "bairro": "Boa Vista",
+        "cidade": "Recife",
+        "uf": "PE",
+        "complemento": "Casa"
+      },
+      "formacao": {
+        "nomeDoCurso": "Administração",
+        "nomeDaPos": "",
+        "nomeDoMestrado": "",
+        "nomeDoDoutorado": "",
+        "nomeDoPosDoutorado": ""
+      },
+      "dadosContratuais": {
+        "portariaDeNomeacao": "Portaria nº 988/2022",
+        "dataDeAdmissao": "2016-04-11T01:19:45.014Z",
+        "regimeDeContratacao": "Efetivo",
+        "simbologia": "NM",
+        "orgaoDeOrigem": "",
+        "exerceFuncaoFora": "Não"
+      },
+      "jornadaDeTrabalho": {
+        "modeloDeTrabalho": "Remoto",
+        "cargaHorariaSemanal": "40h",
+        "horarioDeTrabalho": "08:00 às 17:00",
+        "escalaDeTrabalho": "Segunda a Sexta"
+      },
+      "documentacao": {
+        "orgao": "SSP-PE",
+        "registro": "1954455",
+        "emissao": "2000-05-10T03:00:00.000Z",
+        "uf": "PE"
+      },
+      "dadosDeSaude": {
+        "dataDoExame": "2024-07-30T03:00:00.000Z"
+      },
+      "dadosDaConta": {
+        "banco": "Itaú",
+        "agencia": "9634",
+        "conta": "81726"
+      }
+    },
+    {
+      "id": "p010",
+      "perfilDoColaborador": {
+        "nomeCompleto": "Adérito Nogueira",
+        "emailCorporativo": "aderito.nogueira@example.com",
+        "celular": "(94) 4080-5692",
+        "cargo": "Analista",
+        "lotacaoSetor": "Jurídico",
+        "matricula": "20250010",
+        "dataDeAniversario": "1996-05-05T21:07:58.279Z",
+        "nomeSocial": "",
+        "emailPessoal": "aderito.nogueira@example.com",
+        "telefone": "(72) 8227-1798"
+      },
+      "dadosPessoais": {
+        "dependentes": [],
+        "nomeDaMae": "Maria Nogueira",
+        "estadoCivil": "Casado",
+        "nacionalidade": "Brasileiro",
+        "naturalidadeCidadeUF": "Viamão - Rio Grande do Norte",
+        "sexo": "Masculino",
+        "raca": "Branco",
+        "dataDeNascimento": "1996-05-05T21:07:58.279Z",
+        "nomeDoPai": "José Nogueira",
+        "nomeDoConjuge": "",
+        "genero": "Homem cis",
+        "pronome": "ele/dele",
+        "cpf": "31663570085"
+      },
+      "endereco": {
+        "cep": "50017976",
+        "rua": "Rua Exemplo",
+        "bairro": "Boa Vista",
+        "cidade": "Recife",
+        "uf": "PE",
+        "complemento": "Casa"
+      },
+      "formacao": {
+        "nomeDoCurso": "Administração",
+        "nomeDaPos": "",
+        "nomeDoMestrado": "",
+        "nomeDoDoutorado": "",
+        "nomeDoPosDoutorado": ""
+      },
+      "dadosContratuais": {
+        "portariaDeNomeacao": "Portaria nº 846/2020",
+        "dataDeAdmissao": "2016-04-27T21:45:38.811Z",
+        "regimeDeContratacao": "Efetivo",
+        "simbologia": "NM",
+        "orgaoDeOrigem": "",
+        "exerceFuncaoFora": "Não"
+      },
+      "jornadaDeTrabalho": {
+        "modeloDeTrabalho": "Presencial",
+        "cargaHorariaSemanal": "40h",
+        "horarioDeTrabalho": "08:00 às 17:00",
+        "escalaDeTrabalho": "Segunda a Sexta"
+      },
+      "documentacao": {
+        "orgao": "SSP-PE",
+        "registro": "9501200",
+        "emissao": "2006-06-10T03:00:00.000Z",
+        "uf": "PE"
+      },
+      "dadosDeSaude": {
+        "dataDoExame": "2024-07-30T03:00:00.000Z"
+      },
+      "dadosDaConta": {
+        "banco": "Banco do Brasil",
+        "agencia": "4458",
+        "conta": "63405"
+      }
+    },
+    {
+      "id": "cbf7",
+      "perfilDoColaborador": {
+        "nomeCompleto": "lucas henrique de andrade",
+        "nomeSocial": "pinho",
+        "dataDeNascimento": "1998-01-31T02:00:00.000Z",
+        "matricula": "55478412/10",
+        "cargo": "analista_arquivo_escrituracao",
+        "lotacaoSetor": "gga",
+        "emailPessoal": "lord1marechal@gmail.com",
+        "emailCorporativo": "lord1marechal@gmail.com",
+        "celular": "81986249626",
+        "telefone": "81987677364"
+      },
+      "dadosPessoais": {
+        "nomeDaMae": "sandra de andrade",
+        "nomeDoPai": "",
+        "estadoCivil": "solteiro",
+        "nomeDoConjuge": "",
+        "nacionalidade": "brasileira",
+        "naturalidadeCidadeUF": "recife/pe",
+        "sexo": "masculino",
+        "genero": "cisgenero",
+        "pronome": "ele/dele",
+        "raca": "parda",
+        "dependentes": [
+          {
+            "nome": "james",
+            "parentesco": "filho",
+            "dataDeNascimento": "2025-08-29T17:27:48.934Z",
+            "cpf": "13355516465"
+          }
+        ]
+      },
+      "formacao": {
+        "escolaridade": "superior_completo",
+        "nomeDoCurso": "ADS",
+        "nomeDaPos": "N/A",
+        "nomeDoMestrado": "N/A",
+        "nomeDoDoutorado": "",
+        "nomeDoPosDoutorado": ""
+      },
+      "endereco": {
+        "cep": "50740180",
+        "numero": "33",
+        "rua": "rua eng vasconcelos bittencourt",
+        "complemento": "casa 3",
+        "bairro": "varzea",
+        "cidade": "recife",
+        "uf": "pe"
+      },
+      "dadosContratuais": {
+        "portariaDeNomeacao": "5548771",
+        "dataDeAdmissao": "2025-01-01T03:00:00.000Z",
+        "regimeDeContratacao": "comissionado",
+        "simbologia": "caa-4",
+        "onus": "sem_onus",
+        "orgaoDeOrigem": "",
+        "exerceFuncaoFora": "",
+        "regimePrevidenciario": ""
+      },
+      "dadosDaConta": {
+        "banco": "inter",
+        "agencia": "101",
+        "conta": "102548"
+      },
+      "jornadaDeTrabalho": {
+        "modeloDeTrabalho": "presencial",
+        "cargaHorariaSemanal": "40",
+        "horarioDeTrabalho": "8 as 17",
+        "escalaDeTrabalho": "5x2"
+      },
+      "documentacao": {
+        "registroProfissional": {
+          "orgao": "crm",
+          "regiao": "asdw",
+          "numero": "1111",
+          "emissao": "2025-08-29T17:25:27.897Z",
+          "uf": "pe"
+        },
+        "certidaoCasamento": {
+          "data": "2025-08-29T17:25:27.897Z",
+          "livro": "aaa",
+          "folha": "ssss"
+        },
+        "identidade": {
+          "rg": "507402547",
+          "emissao": "2025-08-29T17:25:27.897Z",
+          "orgao": "SDS"
+        },
+        "cpf": {
+          "numero": "13355516465"
+        },
+        "pisPasep": {
+          "numero": "214145785"
+        },
+        "tituloEleitor": {
+          "numero": "105487",
+          "zona": "01",
+          "secao": "874"
+        },
+        "ctps": {
+          "numero": "1025478",
+          "serie": "102",
+          "uf": "PE"
+        }
+      },
+      "dadosDeSaude": {
+        "dataDoExame": "2025-08-29T17:25:27.897Z",
+        "statusAso": null,
+        "asoAdmissional": null
+      }
+    },
+    {
+      "id": "6728",
+      "perfilDoColaborador": {
+        "nomeCompleto": "Gustavo Teixeira Bione",
+        "nomeSocial": "",
+        "dataDeNascimento": "1999-10-04T02:00:00.000Z",
+        "matricula": "1223024_4",
+        "cargo": "dev_frontend",
+        "lotacaoSetor": "sti",
+        "emailPessoal": "gustavoteixeira394@gmail.com",
+        "emailCorporativo": "gustavo.tbione@perpart.pe.gov.br",
+        "celular": "(81)99705-1466",
+        "telefone": ""
+      },
+      "dadosPessoais": {
+        "nomeDaMae": "Simone Cirino Teixeira",
+        "nomeDoPai": "Elias Bione da Silva",
+        "estadoCivil": "solteiro",
+        "nomeDoConjuge": "",
+        "nacionalidade": "Brasilerio",
+        "naturalidadeCidadeUF": "Recife, PE",
+        "sexo": "masculino",
+        "genero": "cisgenero",
+        "pronome": "ele/dele",
+        "raca": "branca",
+        "dependentes": []
+      },
+      "formacao": {
+        "escolaridade": "superior_em_andamento",
+        "nomeDoCurso": "Ciência da computação",
+        "nomeDaPos": "",
+        "nomeDoMestrado": "",
+        "nomeDoDoutorado": "",
+        "nomeDoPosDoutorado": ""
+      },
+      "endereco": {
+        "cep": "52030-200",
+        "numero": "138",
+        "rua": "Rua Cândido Lacerda",
+        "complemento": "apt 302",
+        "bairro": "Torreão",
+        "cidade": "Recife",
+        "uf": "Pernambuco"
+      },
+      "dadosContratuais": {
+        "portariaDeNomeacao": "123158_001",
+        "dataDeAdmissao": "2024-11-18T03:00:00.000Z",
+        "regimeDeContratacao": "estagiario",
+        "simbologia": "caa-1",
+        "onus": "sem_onus",
+        "orgaoDeOrigem": "",
+        "exerceFuncaoFora": "",
+        "regimePrevidenciario": ""
+      },
+      "dadosDaConta": {
+        "banco": "nubank",
+        "agencia": "001",
+        "conta": "4624753"
+      },
+      "jornadaDeTrabalho": {
+        "modeloDeTrabalho": "presencial",
+        "cargaHorariaSemanal": "20hrs",
+        "horarioDeTrabalho": "13:00 as 17:00",
+        "escalaDeTrabalho": "5x2"
+      },
+      "documentacao": {
+        "registroProfissional": {
+          "orgao": "",
+          "regiao": "",
+          "numero": "",
+          "emissao": "2025-08-29T18:09:45.874Z",
+          "uf": ""
+        },
+        "certidaoCasamento": {
+          "data": "2025-08-29T18:09:45.874Z",
+          "livro": "",
+          "folha": ""
+        },
+        "identidade": {
+          "rg": "9.930.230",
+          "emissao": "2014-05-14T03:00:00.000Z",
+          "orgao": "SDS/PE"
+        },
+        "cpf": {
+          "numero": "126.318.544-46"
+        },
+        "pisPasep": {
+          "numero": ""
+        },
+        "tituloEleitor": {
+          "numero": "5613",
+          "zona": "3213",
+          "secao": "103"
+        },
+        "ctps": {
+          "numero": "",
+          "serie": "",
+          "uf": ""
+        }
+      },
+      "dadosDeSaude": {
+        "dataDoExame": "2025-08-29T18:09:45.874Z",
+        "statusAso": null,
+        "asoAdmissional": null
+      }
+    },
+    {
+      "id": "a6d8",
+      "perfilDoColaborador": {
+        "nomeCompleto": "Gustavo Teixeira Bione",
+        "nomeSocial": "",
+        "dataDeNascimento": "2025-08-29T18:09:45.874Z",
+        "matricula": "1223024_4",
+        "cargo": "advogado",
+        "lotacaoSetor": "cst",
+        "emailPessoal": "",
+        "emailCorporativo": "jandirene.vieira@example.com",
+        "celular": "(81)99995-4321",
+        "telefone": ""
+      },
+      "dadosPessoais": {
+        "nomeDaMae": "Simone Cirino Teixeira",
+        "nomeDoPai": "",
+        "estadoCivil": "solteiro",
+        "nomeDoConjuge": "",
+        "nacionalidade": "Brasilerio",
+        "naturalidadeCidadeUF": "Recife, PE",
+        "sexo": "masculino",
+        "genero": "",
+        "pronome": "",
+        "raca": "branca",
+        "dependentes": []
+      },
+      "formacao": {
+        "escolaridade": "superior_incompleto",
+        "nomeDoCurso": "",
+        "nomeDaPos": "",
+        "nomeDoMestrado": "",
+        "nomeDoDoutorado": "",
+        "nomeDoPosDoutorado": ""
+      },
+      "endereco": {
+        "cep": "52030-200",
+        "numero": "138",
+        "rua": "Rua Cândido Lacerda",
+        "complemento": "apt 302",
+        "bairro": "Torreão",
+        "cidade": "Recife",
+        "uf": "Pernambuco"
+      },
+      "dadosContratuais": {
+        "portariaDeNomeacao": "",
+        "dataDeAdmissao": "2025-08-29T18:09:45.874Z",
+        "regimeDeContratacao": "jovem_aprendiz",
+        "simbologia": "caa-1",
+        "onus": "sem_onus",
+        "orgaoDeOrigem": "",
+        "exerceFuncaoFora": "",
+        "regimePrevidenciario": ""
+      },
+      "dadosDaConta": {
+        "banco": "original",
+        "agencia": "4234534",
+        "conta": "347345"
+      },
+      "jornadaDeTrabalho": {
+        "modeloDeTrabalho": "presencial",
+        "cargaHorariaSemanal": "40hrs",
+        "horarioDeTrabalho": "",
+        "escalaDeTrabalho": ""
+      },
+      "documentacao": {
+        "registroProfissional": {
+          "orgao": "",
+          "regiao": "",
+          "numero": "",
+          "emissao": "2025-08-29T18:09:45.874Z",
+          "uf": ""
+        },
+        "certidaoCasamento": {
+          "data": "2025-08-29T18:09:45.874Z",
+          "livro": "",
+          "folha": ""
+        },
+        "identidade": {
+          "rg": "",
+          "emissao": "2025-08-29T18:09:45.874Z",
+          "orgao": ""
+        },
+        "cpf": {
+          "numero": "12631854446"
+        },
+        "pisPasep": {
+          "numero": ""
+        },
+        "tituloEleitor": {
+          "numero": "",
+          "zona": "",
+          "secao": ""
+        },
+        "ctps": {
+          "numero": "",
+          "serie": "",
+          "uf": ""
+        }
+      },
+      "dadosDeSaude": {
+        "dataDoExame": "2025-08-29T18:09:45.874Z",
+        "statusAso": null,
+        "asoAdmissional": null
+      }
+    },
+    {
+      "id": "3e04",
+      "perfilDoColaborador": {
+        "nomeCompleto": "Gustavo Teixeira Bione",
+        "nomeSocial": "Teste",
+        "dataDeNascimento": "2025-08-29T18:28:03.222Z",
+        "matricula": "1223024_4",
+        "cargo": "dev_frontend",
+        "lotacaoSetor": "sti",
+        "emailPessoal": "gustavoteixeira394@gmail.com",
+        "emailCorporativo": "gustavo.tbione@perpart.pe.gov.br",
+        "celular": "(81)99705-1466",
+        "telefone": ""
+      },
+      "dadosPessoais": {
+        "nomeDaMae": "Simone Cirino Teixeira",
+        "nomeDoPai": "",
+        "estadoCivil": "solteiro",
+        "nomeDoConjuge": "",
+        "nacionalidade": "Brasilerio",
+        "naturalidadeCidadeUF": "Recife, PE",
+        "sexo": "masculino",
+        "genero": "cisgenero",
+        "pronome": "",
+        "raca": "branca",
+        "dependentes": []
+      },
+      "formacao": {
+        "escolaridade": "superior_em_andamento",
+        "nomeDoCurso": "",
+        "nomeDaPos": "",
+        "nomeDoMestrado": "",
+        "nomeDoDoutorado": "",
+        "nomeDoPosDoutorado": ""
+      },
+      "endereco": {
+        "cep": "52030-200",
+        "numero": "138",
+        "rua": "Rua Cândido Lacerda",
+        "complemento": "",
+        "bairro": "Torreão",
+        "cidade": "Recife",
+        "uf": "Pernambuco"
+      },
+      "dadosContratuais": {
+        "portariaDeNomeacao": "",
+        "dataDeAdmissao": "2025-08-29T18:28:03.222Z",
+        "regimeDeContratacao": "Estagiário",
+        "simbologia": "CAA-1",
+        "onus": "Sem Ônus",
+        "orgaoDeOrigem": "",
+        "exerceFuncaoFora": "",
+        "regimePrevidenciario": ""
+      },
+      "dadosDaConta": {
+        "banco": "Nubank",
+        "agencia": "001",
+        "conta": "4624753"
+      },
+      "jornadaDeTrabalho": {
+        "modeloDeTrabalho": "Presencial",
+        "cargaHorariaSemanal": "20hrs",
+        "horarioDeTrabalho": "",
+        "escalaDeTrabalho": ""
+      },
+      "documentacao": {
+        "registroProfissional": {
+          "orgao": "",
+          "regiao": "",
+          "numero": "",
+          "emissao": "2025-08-29T18:28:03.222Z",
+          "uf": ""
+        },
+        "certidaoCasamento": {
+          "data": "2025-08-29T18:28:03.222Z",
+          "livro": "",
+          "folha": ""
+        },
+        "identidade": {
+          "rg": "9930230",
+          "emissao": "2025-08-29T18:28:03.222Z",
+          "orgao": ""
+        },
+        "cpf": {
+          "numero": "12631854446"
+        },
+        "pisPasep": {
+          "numero": ""
+        },
+        "tituloEleitor": {
+          "numero": "",
+          "zona": "",
+          "secao": ""
+        },
+        "ctps": {
+          "numero": "",
+          "serie": "",
+          "uf": ""
+        }
+      },
+      "dadosDeSaude": {
+        "dataDoExame": "2025-08-29T18:28:03.222Z",
+        "statusAso": "apto",
+        "asoAdmissional": null
+      }
+    },
+    {
+      "id": "aa5f",
+      "perfilDoColaborador": {
+        "nomeCompleto": "sadsadas",
+        "nomeSocial": "",
+        "dataDeNascimento": "2025-09-01T11:42:45.541Z",
+        "matricula": "sa23123",
+        "cargo": "agente_de_desenvolvimento",
+        "lotacaoSetor": "gap",
+        "emailPessoal": "",
+        "emailCorporativo": "jandirene.vi2342eira@example.com",
+        "celular": "(13) 0654-3025",
+        "telefone": ""
+      },
+      "dadosPessoais": {
+        "nomeDaMae": "dsafdsfsd",
+        "nomeDoPai": "",
+        "estadoCivil": "casado",
+        "nomeDoConjuge": "",
+        "nacionalidade": "Brasileiro",
+        "naturalidadeCidadeUF": "dsfdsf",
+        "sexo": "feminino",
+        "genero": "",
+        "pronome": "",
+        "raca": "preta",
+        "dependentes": []
+      },
+      "formacao": {
+        "escolaridade": "medio_incompleto",
+        "nomeDoCurso": "",
+        "nomeDaPos": "",
+        "nomeDoMestrado": "",
+        "nomeDoDoutorado": "",
+        "nomeDoPosDoutorado": ""
+      },
+      "endereco": {
+        "cep": "34234324234",
+        "numero": "dsf34",
+        "rua": "dsfdsf",
+        "complemento": "",
+        "bairro": "dsfdsfds",
+        "cidade": "dsfsdf",
+        "uf": "dsfsdf"
+      },
+      "dadosContratuais": {
+        "portariaDeNomeacao": "",
+        "dataDeAdmissao": "2025-09-01T11:42:45.541Z",
+        "regimeDeContratacao": "Estagiário",
+        "simbologia": "CAA-2",
+        "onus": "Sem Ônus",
+        "orgaoDeOrigem": "",
+        "exerceFuncaoFora": "",
+        "regimePrevidenciario": ""
+      },
+      "dadosDaConta": {
+        "banco": "Sicoob",
+        "agencia": "4132343222",
+        "conta": "43324234131313"
+      },
+      "jornadaDeTrabalho": {
+        "modeloDeTrabalho": "Presencial",
+        "cargaHorariaSemanal": "23",
+        "horarioDeTrabalho": "",
+        "escalaDeTrabalho": ""
+      },
+      "documentacao": {
+        "registroProfissional": {
+          "orgao": "",
+          "regiao": "",
+          "numero": "",
+          "emissao": "2025-09-01T11:42:45.541Z",
+          "uf": ""
+        },
+        "certidaoCasamento": {
+          "data": "2025-09-01T11:42:45.541Z",
+          "livro": "",
+          "folha": ""
+        },
+        "identidade": {
+          "rg": "",
+          "emissao": "2025-09-01T11:42:45.541Z",
+          "orgao": ""
+        },
+        "cpf": {
+          "numero": "32423423423423"
+        },
+        "pisPasep": {
+          "numero": ""
+        },
+        "tituloEleitor": {
+          "numero": "",
+          "zona": "",
+          "secao": ""
+        },
+        "ctps": {
+          "numero": "",
+          "serie": "",
+          "uf": ""
+        }
+      },
+      "dadosDeSaude": {
+        "dataDoExame": "2025-09-01T11:42:45.541Z",
+        "statusAso": null,
+        "asoAdmissional": null
+      }
+    },
+    {
+      "id": "c521",
+      "perfilDoColaborador": {
+        "nomeCompleto": "lucas henrique de andrade",
+        "nomeSocial": "pinhoo",
+        "dataDeNascimento": "1998-12-31T02:00:00.000Z",
+        "matricula": "12345786",
+        "cargo": "analista_de_desenvolvimento",
+        "lotacaoSetor": "gap",
+        "emailPessoal": "lord1marechal@gmail.com",
+        "emailCorporativo": "asdasd@gmail.com",
+        "celular": "81986249626",
+        "telefone": "81986249626"
+      },
+      "dadosPessoais": {
+        "nomeDaMae": "sandra de andrade",
+        "nomeDoPai": "tenho sim",
+        "estadoCivil": "solteiro",
+        "nomeDoConjuge": "nao tem",
+        "nacionalidade": "brasileira",
+        "naturalidadeCidadeUF": "Recife",
+        "sexo": "masculino",
+        "genero": "cisgenero",
+        "pronome": "elu/delu",
+        "raca": "amarela",
+        "dependentes": [
+          {
+            "nome": "james",
+            "parentesco": "filho",
+            "dataDeNascimento": "2010-01-13T02:00:00.000Z",
+            "cpf": "13355516465"
+          }
+        ]
+      },
+      "formacao": {
+        "escolaridade": "medio_incompleto",
+        "nomeDoCurso": "ADS",
+        "nomeDaPos": "",
+        "nomeDoMestrado": "",
+        "nomeDoDoutorado": "",
+        "nomeDoPosDoutorado": ""
+      },
+      "endereco": {
+        "cep": "50740180",
+        "rua": "Rua Engenheiro Vasconcelos Bittencourt",
+        "numero": "33",
+        "complemento": "Loja de Roupa",
+        "bairro": "Várzea",
+        "cidade": "Recife",
+        "uf": "pe"
+      },
+      "dadosContratuais": {
+        "portariaDeNomeacao": "Portaria nº 628/2021",
+        "dataDeAdmissao": "2010-04-07T03:00:00.000Z",
+        "regimeDeContratacao": "Jovem Aprendiz",
+        "simbologia": "CAA-2",
+        "onus": "Sem Ônus",
+        "orgaoDeOrigem": "asdasd",
+        "exerceFuncaoFora": "Sim",
+        "regimePrevidenciario": "RGPS"
+      },
+      "dadosDaConta": {
+        "banco": "Itau",
+        "agencia": "123123",
+        "conta": "94897"
+      },
+      "jornadaDeTrabalho": {
+        "modeloDeTrabalho": "Presencial",
+        "cargaHorariaSemanal": "24",
+        "horarioDeTrabalho": "08:00 às 17:00",
+        "escalaDeTrabalho": "5x2"
+      },
+      "documentacao": {
+        "registroProfissional": {
+          "orgao": "crea",
+          "regiao": "4 ",
+          "numero": "20",
+          "emissao": "2007-01-08T02:00:00.000Z",
+          "uf": "pe"
+        },
+        "certidaoCasamento": {
+          "data": "2025-01-08T03:00:00.000Z",
+          "livro": "54",
+          "folha": "1234598"
+        },
+        "identidade": {
+          "rg": "50134845",
+          "emissao": "2025-09-01T15:40:31.096Z",
+          "orgaoEmissor": "sds"
+        },
+        "cpf": {
+          "numero": "13355516465"
+        },
+        "pisPasep": {
+          "numero": "45687854310"
+        },
+        "tituloEleitor": {
+          "numero": "123456789102",
+          "zona": "asd1",
+          "secao": "1232"
+        },
+        "ctps": {
+          "numero": "1234567",
+          "serie": "1424",
+          "uf": "pe"
+        }
+      },
+      "dadosDeSaude": {
+        "dataDoExame": "2006-01-19T02:00:00.000Z",
+        "statusAso": "apto",
+        "asoAdmissional": null
+      }
+    },
+    {
+      "id": "p001",
+      "perfilDoColaborador": {
+        "nomeCompleto": "Rosane Pires",
+        "emailCorporativo": "rosane.pires@example.com",
+        "celular": "(59) 6628-0768",
+        "cargo": "Analista",
+        "lotacaoSetor": "Jurídico",
+        "matricula": "20250001",
+        "dataDeAniversario": "1969-02-17T05:24:28.317Z",
+        "nomeSocial": "",
+        "emailPessoal": "rosane.pires@example.com",
+        "telefone": "(81) 0905-2605",
+        "dataDeNascimento": null
+      },
+      "dadosPessoais": {
+        "dependentes": [],
+        "nomeDaMae": "Maria Pires",
+        "estadoCivil": "Divorciado",
+        "nacionalidade": "Brasileiro",
+        "naturalidadeCidadeUF": "Ribeirão Preto - Pará",
+        "sexo": "Feminino",
+        "raca": "Pardo",
+        "dataDeNascimento": "1969-02-17T05:24:28.317Z",
+        "nomeDoPai": "José Pires",
+        "nomeDoConjuge": "",
+        "genero": "Mulher cis",
+        "pronome": "ela/dela",
+        "cpf": "34554724034"
+      },
+      "endereco": {
+        "cep": "50036673",
+        "rua": "Rua Exemplo",
+        "bairro": "Boa Vista",
+        "cidade": "Recife",
+        "uf": "PE",
+        "complemento": "Casa"
+      },
+      "formacao": {
+        "nomeDoCurso": "Engenharia",
+        "nomeDaPos": "",
+        "nomeDoMestrado": "",
+        "nomeDoDoutorado": "",
+        "nomeDoPosDoutorado": ""
+      },
+      "dadosContratuais": {
+        "portariaDeNomeacao": "Portaria nº 663/2022",
+        "dataDeAdmissao": "2008-01-28T03:00:48.660Z",
+        "regimeDeContratacao": "Efetivo",
+        "simbologia": "NM",
+        "orgaoDeOrigem": "",
+        "exerceFuncaoFora": "Não"
+      },
+      "jornadaDeTrabalho": {
+        "modeloDeTrabalho": "Presencial",
+        "cargaHorariaSemanal": "40h",
+        "horarioDeTrabalho": "08:00 às 17:00",
+        "escalaDeTrabalho": "Segunda a Sexta"
+      },
+      "documentacao": {
+        "orgao": "SSP-PE",
+        "registro": "5983402",
+        "emissao": "2001-04-10T03:00:00.000Z",
+        "uf": "PE",
+        "registroProfissional": {
+          "emissao": null
+        },
+        "certidaoCasamento": {
+          "data": null
+        },
+        "identidade": {
+          "emissao": null
+        }
+      },
+      "dadosDeSaude": {
+        "dataDoExame": "2024-07-30T03:00:00.000Z"
+      },
+      "dadosDaConta": {
+        "banco": "Caixa",
+        "agencia": "5495",
+        "conta": "63048"
+      },
+      "createdAt": "2025-09-02T12:56:04.806Z",
+      "updatedAt": "2025-09-02T12:56:04.806Z"
+    },
+    {
+      "id": "p001",
+      "perfilDoColaborador": {
+        "nomeCompleto": "Rosane Pires",
+        "emailCorporativo": "rosane.pires@example.com",
+        "celular": "(59) 6628-0768",
+        "cargo": "Analista",
+        "lotacaoSetor": "Jurídico",
+        "matricula": "20250001",
+        "dataDeAniversario": "1969-02-17T05:24:28.317Z",
+        "nomeSocial": "",
+        "emailPessoal": "rosane.pires@example.com",
+        "telefone": "(81) 0905-2605",
+        "dataDeNascimento": null
+      },
+      "dadosPessoais": {
+        "dependentes": [],
+        "nomeDaMae": "Maria Pires",
+        "estadoCivil": "Divorciado",
+        "nacionalidade": "Brasileiro",
+        "naturalidadeCidadeUF": "Ribeirão Preto - Pará",
+        "sexo": "Feminino",
+        "raca": "Pardo",
+        "dataDeNascimento": "1969-02-17T05:24:28.317Z",
+        "nomeDoPai": "José Pires",
+        "nomeDoConjuge": "",
+        "genero": "Mulher cis",
+        "pronome": "ela/dela",
+        "cpf": "34554724034"
+      },
+      "endereco": {
+        "cep": "50036673",
+        "rua": "Rua Exemplo",
+        "bairro": "Boa Vista",
+        "cidade": "Recife",
+        "uf": "PE",
+        "complemento": "Casa"
+      },
+      "formacao": {
+        "nomeDoCurso": "Engenharia",
+        "nomeDaPos": "",
+        "nomeDoMestrado": "",
+        "nomeDoDoutorado": "",
+        "nomeDoPosDoutorado": ""
+      },
+      "dadosContratuais": {
+        "portariaDeNomeacao": "Portaria nº 663/2022",
+        "dataDeAdmissao": "2008-01-28T03:00:48.660Z",
+        "regimeDeContratacao": "Efetivo",
+        "simbologia": "NM",
+        "orgaoDeOrigem": "",
+        "exerceFuncaoFora": "Não"
+      },
+      "jornadaDeTrabalho": {
+        "modeloDeTrabalho": "Presencial",
+        "cargaHorariaSemanal": "40h",
+        "horarioDeTrabalho": "08:00 às 17:00",
+        "escalaDeTrabalho": "Segunda a Sexta"
+      },
+      "documentacao": {
+        "orgao": "SSP-PE",
+        "registro": "5983402",
+        "emissao": "2001-04-10T03:00:00.000Z",
+        "uf": "PE",
+        "registroProfissional": {
+          "emissao": null
+        },
+        "certidaoCasamento": {
+          "data": null
+        },
+        "identidade": {
+          "emissao": null
+        }
+      },
+      "dadosDeSaude": {
+        "dataDoExame": "2024-07-30T03:00:00.000Z"
+      },
+      "dadosDaConta": {
+        "banco": "Caixa",
+        "agencia": "5495",
+        "conta": "63048"
+      },
+      "createdAt": "2025-09-02T12:56:08.045Z",
+      "updatedAt": "2025-09-02T12:56:08.045Z"
     }
   ]
 }
-  
