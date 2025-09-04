@@ -2,14 +2,18 @@
   "posts": [
     {
       "id": 1,
-      "title": "Bem-vindo à Fake API",
-      "content": "Esta é uma API RESTful completa com arquitetura limpa e separação de responsabilidades.",
-      "author": "Samuel",
-      "tags": [
-        "api",
-        "rest",
-        "nodejs"
-      ],
+      "title": "Meu Post",
+      "content": "Conteúdo do post",
+      "author": "João",
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "João Silva",
+      "email": "joao@email.com",
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"
     }
