@@ -3,318 +3,406 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>fakeapi — recursos e exemplos</title>
+  <title>fakeapi — recursos & docs</title>
+  <meta name="description" content="Fake API para protótipos: recursos, exemplos e testes rápidos.">
+  <link rel="icon" type="image/png" href="./logo.png">
+  <link rel="apple-touch-icon" href="./logo.png">
 
-  <!-- Prevenir FOUC do tema -->
+  <!-- Tailwind (troque por ./tw.js se preferir local) -->
+  <script src="./tw.js"></script>
+  <script> tailwind.config = { darkMode: 'class' } </script>
+
+  <!-- Tema inicial sem FOUC -->
   <script>
-    (function(){
+    (() => {
       try {
         const saved = localStorage.getItem('fakeapi_theme');
-        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const isDark = saved ? saved === 'dark' : prefersDark;
         if (isDark) document.documentElement.classList.add('dark');
       } catch {}
     })();
   </script>
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script> tailwind.config = { darkMode: 'class' } </script>
-
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='20' fill='%236d28d9'/%3E%3Cpath d='M64 26l38 21v42L64 102 26 89V47z' fill='white'/%3E%3C/svg%3E">
+  <style>
+    /* micro-detalhes visuais */
+    .glass { backdrop-filter: blur(8px); background: color-mix(in srgb, var(--tw-bg-opacity,1) transparent 60%, white); }
+    .shine { position: relative; overflow: hidden; }
+    .shine::after{
+      content:""; position:absolute; inset:-200% -50% auto -50%;
+      transform: rotate(20deg); height:300%; width:30%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
+      animation: shine 3.5s linear infinite;
+    }
+    @keyframes shine { 0%{transform:translateX(-120%) rotate(20deg)} 100%{transform:translateX(220%) rotate(20deg)} }
+    .skeleton{animation:pulse 1.2s ease-in-out infinite; background:linear-gradient(90deg, rgba(148,163,184,.25), rgba(148,163,184,.18), rgba(148,163,184,.25)); background-size:200% 100%}
+    @keyframes pulse{0%{background-position:200% 0}100%{background-position:-200% 0}}
+  </style>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100">
-  <!-- Header -->
-  <header class="sticky top-0 z-30 border-b border-slate-200/60 dark:border-slate-800/60 backdrop-blur bg-white/70 dark:bg-slate-900/70">
-    <div class="max-w-5xl mx-auto px-4 py-3 relative">
-      <div class="flex items-center justify-between gap-3">
-        <!-- Brand -->
-        <a href="#" class="flex items-center gap-3">
-          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-pink-500 text-white shadow-md shadow-violet-500/20">
-            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 4v10l-7 4-7-4V7z"/><path d="M12 12l7-4"/></svg>
-          </span>
-          <div>
-            <h1 class="text-base font-bold leading-5">fakeapi</h1>
-            <p class="text-xs text-slate-500 dark:text-slate-400 leading-4">API REST para protótipos e testes</p>
+<body class="min-h-screen flex flex-col bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100">
+  <!-- HERO com logo em destaque -->
+  <header class="relative isolate">
+    <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-violet-600/10 via-transparent to-transparent dark:from-violet-400/10"></div>
+    <div class="max-w-5xl mx-auto px-4 pt-10 pb-6">
+      <div class="flex items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <div class="rounded-2xl p-1.5 ">
+            <div class="rounded-xl bg-white dark:bg-slate-800 shadow-md shine">
+              <img src="./logo.png" alt="fakeapi logo" class="h-14 w-14 object-contain drop-shadow" />
+            </div>
           </div>
-        </a>
-
-        <!-- Desktop controls -->
-        <div class="hidden md:flex flex-wrap items-center gap-2">
-          <input data-role="baseInput"
-                 class="w-[260px] sm:w-[320px] rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-violet-500"
-                 placeholder="https://fakeapi.aioher.com" aria-label="Base URL da API">
-          <button data-role="detectBtn" class="rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800">Detectar</button>
-          <button data-role="reloadBtn" class="rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800">Recarregar</button>
-          <button data-role="themeBtn" class="rounded-lg bg-violet-600 text-white px-3 py-2 text-sm hover:bg-violet-700">Tema</button>
+          <div>
+            <h1 class="text-2xl font-bold tracking-tight">Fakeapi</h1>
+            <p class="text-sm text-slate-600 dark:text-slate-300">API REST para protótipos, testes e demos rápidas.</p>
+          </div>
         </div>
 
-        <!-- Mobile: hamburger -->
-        <button id="navToggle" aria-controls="mobileMenu" aria-expanded="false"
-                class="md:hidden inline-flex items-center justify-center rounded-lg border border-slate-300 dark:border-slate-700 p-2 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
-                aria-label="Abrir menu">
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
+        <div class="flex items-center gap-2">
+          <button id="themeBtn" class="rounded-lg bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 px-3 py-2 text-xs hover:opacity-90">Tema</button>
+        </div>
       </div>
 
-      <!-- Mobile panel -->
-      <div id="mobileMenu" class="md:hidden hidden absolute left-0 right-0 top-full mt-2">
-        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 shadow-xl backdrop-blur p-3 space-y-2">
-          <label class="block text-xs text-slate-500 dark:text-slate-400 px-1">Base URL</label>
-          <input data-role="baseInput"
-                 class="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-violet-500"
-                 placeholder="https://fakeapi.aioher.com" aria-label="Base URL da API (mobile)">
-          <div class="grid grid-cols-3 gap-2">
-            <button data-role="detectBtn" class="rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800">Detectar</button>
-            <button data-role="reloadBtn" class="rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800">Recarregar</button>
-            <button data-role="themeBtn" class="rounded-lg bg-violet-600 text-white px-3 py-2 text-sm hover:bg-violet-700">Tema</button>
+      <!-- Base URL + Ações -->
+      <div class="mt-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 glass p-3">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+          <label for="baseInput" class="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">Base URL</label>
+          <div class="flex-1 flex items-center gap-2">
+            <input id="baseInput" class="flex-1 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-violet-500"
+                   placeholder="https://fakeapi.aioher.com" aria-label="Base URL da API">
+            <button id="detectBtn" class="rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800">Detectar</button>
+            <button id="reloadBtn" class="rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800">Recarregar</button>
           </div>
-          <a id="apiLink" href="#" target="_blank" rel="noopener" class="block text-xs text-pink-600 dark:text-pink-400 hover:underline px-1">abrir API</a>
         </div>
+        <p id="status" class="mt-2 text-xs text-slate-500 dark:text-slate-400">Pronto.</p>
       </div>
     </div>
   </header>
 
-  <!-- Main -->
-  <main class="max-w-5xl mx-auto px-4 py-8 grid lg:grid-cols-[1.05fr,0.95fr] gap-6">
-    <!-- Recursos -->
-    <section class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800/70 shadow-sm">
-      <div class="p-5 border-b border-slate-200 dark:border-slate-800">
-        <div class="flex items-center justify-between">
-          <h2 class="text-lg font-semibold">Recursos disponíveis</h2>
-          <!-- API link duplicado é controlado pelo do menu mobile -->
+  <!-- MAIN -->
+  <main class="flex-1">
+    <div class="max-w-5xl mx-auto px-4 pb-10">
+      <!-- Controles de exibição -->
+      <div class="mt-6 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <input id="searchInput" class="w-64 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-violet-500"
+                 placeholder="Filtrar recursos (ex: posts)" aria-label="Buscar recurso">
+          <select id="sortSelect" class="rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 py-2 text-sm">
+            <option value="name-asc">Nome (A–Z)</option>
+            <option value="name-desc">Nome (Z–A)</option>
+            <option value="count-desc">Mais itens</option>
+            <option value="count-asc">Menos itens</option>
+          </select>
         </div>
-        <p id="status" class="mt-1 text-xs text-slate-500 dark:text-slate-400">Carregando…</p>
+        <div class="flex items-center gap-2">
+          <button id="viewGridBtn" class="rounded-md px-2 py-1.5 text-sm ring-1 ring-slate-300 dark:ring-slate-700 bg-white dark:bg-slate-800">Grid</button>
+          <button id="viewListBtn" class="rounded-md px-2 py-1.5 text-sm ring-1 ring-slate-300 dark:ring-slate-700">Lista</button>
+          <select id="pageSize" class="rounded-md px-2 py-1.5 text-sm ring-1 ring-slate-300 dark:bg-slate-800 dark:ring-slate-700">
+            <option>8</option><option selected>12</option><option>24</option><option>48</option>
+          </select>
+        </div>
       </div>
-      <ul id="list" class="p-3 divide-y divide-slate-200/70 dark:divide-slate-800/70">
-        <li class="px-3 py-3 text-sm text-slate-500">Carregando…</li>
-      </ul>
-    </section>
 
-    <!-- Docs rápidos -->
-    <section class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800/70 shadow-sm">
-      <div class="p-5 border-b border-slate-200 dark:border-slate-800">
-        <h2 class="text-lg font-semibold">Como usar</h2>
-        <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">
-          Retorno padrão é um <b>array</b>. Para incluir metadados (<code class="text-xs bg-slate-100 dark:bg-slate-900/60 px-1 py-0.5 rounded">page</code>, <code class="text-xs bg-slate-100 dark:bg-slate-900/60 px-1 py-0.5 rounded">total</code>), use <code class="text-xs bg-slate-100 dark:bg-slate-900/60 px-1 py-0.5 rounded">?_meta=1</code>.
-        </p>
-      </div>
-      <div class="p-5 space-y-4">
-        <div>
-          <div class="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-2">Endpoints</div>
-          <div class="text-sm text-slate-700 dark:text-slate-200 flex flex-wrap gap-2">
-            <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-900/60">GET /:resource</code>
-            <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-900/60">GET /:resource/:id</code>
-            <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-900/60">POST /:resource</code>
-            <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-900/60">PUT /:resource/:id</code>
-            <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-900/60">PATCH /:resource/:id</code>
-            <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-900/60">DELETE /:resource/:id</code>
-          </div>
+      <!-- Lista de recursos -->
+      <section id="resourcesWrap" class="mt-4">
+        <ul id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></ul>
+
+        <!-- Lista alternativa -->
+        <ul id="list" class="hidden divide-y divide-slate-200 dark:divide-slate-800 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800/60"></ul>
+
+        <!-- Paginação -->
+        <div id="pager" class="mt-5 flex items-center justify-between gap-3">
+          <button id="prevBtn" class="rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm disabled:opacity-50">Anterior</button>
+          <div class="text-xs text-slate-500 dark:text-slate-400">Página <span id="pageNo">1</span> de <span id="pageTotal">1</span></div>
+          <button id="nextBtn" class="rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm disabled:opacity-50">Próxima</button>
         </div>
 
-        <details class="rounded-xl border border-slate-200 dark:border-slate-800 p-4">
-          <summary class="cursor-pointer font-medium">Parâmetros</summary>
-          <ul class="mt-2 text-sm text-slate-700 dark:text-slate-200 space-y-1">
-            <li><code class="bg-slate-100 dark:bg-slate-900/60 px-1 py-0.5 rounded text-xs">?_page=1</code> + <code class="bg-slate-100 dark:bg-slate-900/60 px-1 py-0.5 rounded text-xs">?_limit=10</code> — paginação (usa header <code class="text-xs">X-Total-Count</code>).</li>
-            <li><code class="bg-slate-100 dark:bg-slate-900/60 px-1 py-0.5 rounded text-xs">?q=texto</code> — busca textual.</li>
-            <li><code class="bg-slate-100 dark:bg-slate-900/60 px-1 py-0.5 rounded text-xs">?_meta=1</code> — retorna <code class="text-xs">{ data, meta }</code>.</li>
-          </ul>
-          <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">Problemas de CORS? Libere a origem do site na variável <code>CORS_ORIGIN</code> ou sirva esta página no mesmo domínio da API.</p>
+        <!-- Empty / erro -->
+        <div id="empty" class="hidden mt-6 rounded-xl border border-slate-200 dark:border-slate-800 p-6 text-center">
+          <p class="text-sm text-slate-600 dark:text-slate-300">Nenhum recurso encontrado.</p>
+        </div>
+        <div id="corsWarn" class="hidden mt-6 rounded-xl border border-rose-300/50 bg-rose-50/60 text-rose-700 dark:bg-rose-900/30 dark:text-rose-200 p-4 text-sm">
+          <b>Possível CORS:</b> libere a origem do site na API (<code>CORS_ORIGIN</code>) ou hospede esta página no mesmo domínio.
+        </div>
+      </section>
+
+      <!-- Documentação rápida -->
+      <section class="mt-10">
+        <details class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800/60 p-4 group open:shadow-sm">
+          <summary class="cursor-pointer select-none text-sm font-medium">Documentação rápida</summary>
+<pre class="mt-3 text-xs leading-5 bg-slate-900 text-slate-100 rounded-lg p-3 overflow-auto shadow-inner"><code>
+GET /__resources        -> Lista recursos (com contagem)
+GET /_docs              -> Esta documentação
+GET /:resource          -> Lista itens de um recurso
+GET /:resource/:id      -> Obtém item específico
+POST /:resource         -> Cria novo item
+PUT /:resource/:id      -> Atualiza item (substituição completa)
+PATCH /:resource/:id    -> Atualiza item (merge parcial)
+DELETE /:resource/:id   -> Remove item
+POST /_ensure/:resource -> Cria recurso se não existir
+
+Parâmetros:
+q        -> Busca textual
+_page    -> Página (1)
+_limit   -> Itens por página (50; máx 100)
+_meta    -> Inclui { data, meta }
+
+Exemplos:
+GET /posts
+GET /posts?q=javascript
+GET /posts?_page=2&_limit=10
+GET /posts?_meta=1
+</code></pre>
         </details>
-
-        <details class="rounded-xl border border-slate-200 dark:border-slate-800 p-4">
-          <summary class="cursor-pointer font-medium">Exemplos (cURL)</summary>
-          <div class="mt-3 relative">
-            <button id="copyCurl" class="absolute right-2 top-2 rounded-md border border-slate-300 dark:border-slate-700 bg-white/80 dark:bg-slate-900/60 text-xs px-2 py-1 hover:bg-slate-100 dark:hover:bg-slate-800">Copiar</button>
-            <pre id="curlExamples" class="text-xs leading-5 bg-slate-900 text-slate-100 rounded-lg p-3 overflow-auto shadow-inner">
-# LISTAR (array)
-curl https://fakeapi.aioher.com/posts
-
-# LISTAR paginado + meta
-curl "https://fakeapi.aioher.com/posts?_page=1&_limit=5&_meta=1"
-
-# DETALHE
-curl https://fakeapi.aioher.com/posts/1
-
-# CRIAR
-curl -X POST https://fakeapi.aioher.com/posts \
-  -H "Content-Type: application/json" \
-  -d '{"title":"Novo post","body":"conteúdo"}'
-            </pre>
-          </div>
-        </details>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="border-t border-slate-200 dark:border-slate-800">
-    <div class="max-w-5xl mx-auto px-4 py-6 text-sm text-slate-600 dark:text-slate-300 flex flex-wrap items-center gap-x-4 gap-y-2">
+  <!-- FOOTER -->
+  <footer class="mt-auto border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 py-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 flex flex-wrap items-center gap-x-4 gap-y-2">
       <span>MIT © <span id="year"></span> fakeapi</span>
-      <span class="hidden sm:inline">•</span>
-      <span class="inline-flex items-center gap-2">
-        Forks: <strong id="forks">—</strong>
-        <a class="underline decoration-dotted hover:text-pink-600 dark:hover:text-pink-400" href="https://github.com/samuelikz/fakeapi/fork" target="_blank" rel="noopener">Fazer fork</a>
-      </span>
       <span class="hidden sm:inline">•</span>
       <a class="underline decoration-dotted hover:text-pink-600 dark:hover:text-pink-400" href="https://fakeapi.aioher.com/" target="_blank" rel="noopener">fakeapi.aioher.com</a>
       <span class="hidden sm:inline">•</span>
-      <a class="underline decoration-dotted hover:text-pink-600 dark:hover:text-pink-400" href="https://github.com/samuelikz/fakeapi" target="_blank" rel="noopener">Repositório</a>
+      <a class="underline decoration-dotted hover:text-pink-600 dark:hover:text-pink-400" href="https://github.com/samuelikz/fakeapi" target="_blank" rel="noopener">GitHub</a>
     </div>
   </footer>
 
   <script>
-    const $  = (s) => document.querySelector(s);
-    const $$ = (s) => [...document.querySelectorAll(s)];
+    // ===== Estado =====
+    const state = {
+      base: '',
+      resources: [],       // [{name, count}]
+      filtered: [],
+      view: 'grid',        // 'grid' | 'list'
+      page: 1,
+      pageSize: 12,
+      sort: 'name-asc',
+      loading: false
+    };
 
-    const listEl   = $('#list');
-    const statusEl = $('#status');
-    const apiLink  = $('#apiLink'); // do menu mobile
-    const navToggle= $('#navToggle');
-    const mobileMenu = $('#mobileMenu');
+    // ===== Elementos =====
+    const $ = (s, r=document) => r.querySelector(s);
+    const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+    const els = {
+      year: $('#year'),
+      baseInput: $('#baseInput'),
+      detectBtn: $('#detectBtn'),
+      reloadBtn: $('#reloadBtn'),
+      status: $('#status'),
+      grid: $('#grid'),
+      list: $('#list'),
+      pager: $('#pager'),
+      prev: $('#prevBtn'),
+      next: $('#nextBtn'),
+      pageNo: $('#pageNo'),
+      pageTotal: $('#pageTotal'),
+      search: $('#searchInput'),
+      sort: $('#sortSelect'),
+      pageSize: $('#pageSize'),
+      empty: $('#empty'),
+      cors: $('#corsWarn'),
+      viewGrid: $('#viewGridBtn'),
+      viewList: $('#viewListBtn'),
+    };
 
-    // --- Navbar mobile toggle ---
-    function closeMenu(){ mobileMenu.classList.add('hidden'); navToggle.setAttribute('aria-expanded','false'); }
-    function openMenu(){ mobileMenu.classList.remove('hidden'); navToggle.setAttribute('aria-expanded','true'); }
-    navToggle.addEventListener('click', () => {
-      const open = navToggle.getAttribute('aria-expanded') === 'true';
-      open ? closeMenu() : openMenu();
-    });
-    window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMenu(); });
-    window.addEventListener('click', (e)=>{ if(!mobileMenu.contains(e.target) && !navToggle.contains(e.target)) closeMenu(); });
-
-    // --- Tema (desktop + mobile) ---
-    $$('.js-theme-btn, [data-role="themeBtn"]').forEach(btn=>{
-      btn.addEventListener('click', () => {
-        const isDark = document.documentElement.classList.toggle('dark');
-        try { localStorage.setItem('fakeapi_theme', isDark ? 'dark' : 'light'); } catch {}
-      });
-    });
-
-    // --- Base URL (múltiplos inputs) ---
-    const baseInputs = $$('[data-role="baseInput"]');
-
-    function defaultBase() {
-      if (location.hostname.endsWith('aioher.com')) return location.origin;
+    // ===== Helpers =====
+    const safeLS = {
+      get(k, f=null){ try{const v=localStorage.getItem(k); return v===null?f:v;}catch{return f;} },
+      set(k,v){ try{localStorage.setItem(k,v);}catch{} }
+    };
+    const setStatus = (txt, danger=false) => {
+      els.status.innerHTML = danger ? `<span class="text-rose-600">${txt}</span>` : txt;
+    };
+    const currentBase = () => (state.base || '').replace(/\/$/,'');
+    const setBase = (v) => {
+      state.base = (v||'').replace(/\/$/,'');
+      els.baseInput.value = state.base;
+      safeLS.set('fakeapi_base', state.base);
+    };
+    const defaultBase = () => {
+      try { if (location.hostname.endsWith('aioher.com')) return location.origin; } catch {}
       return 'https://fakeapi.aioher.com';
-    }
-    function setBase(u) {
-      const clean = (u || '').replace(/\/$/, '');
-      baseInputs.forEach(inp => inp.value = clean);
-      if (apiLink){ apiLink.href = clean || '#'; apiLink.textContent = (clean || '').replace(/^https?:\/\//,'') || 'defina a Base URL'; }
-      // atualizar exemplos
-      $('#curlExamples').textContent =
-`# LISTAR (array)
-curl ${clean}/posts
-
-# LISTAR paginado + meta
-curl "${clean}/posts?_page=1&_limit=5&_meta=1"
-
-# DETALHE
-curl ${clean}/posts/1
-
-# CRIAR
-curl -X POST ${clean}/posts \\
-  -H "Content-Type: application/json" \\
-  -d '{"title":"Novo post","body":"conteúdo"}'`;
-      try { localStorage.setItem('fakeapi_base', clean); } catch {}
-    }
-    setBase(localStorage.getItem('fakeapi_base') || defaultBase());
-    baseInputs.forEach(inp => inp.addEventListener('change', (e)=> setBase(e.target.value)));
-
-    // Helpers
-    async function getJSON(url, { timeout = 8000 } = {}) {
+    };
+    const fetchJSON = async (url, { timeout=8000 } = {}) => {
       const ctrl = new AbortController();
-      const to = setTimeout(() => ctrl.abort(), timeout);
-      try {
+      const t = setTimeout(()=>ctrl.abort(), timeout);
+      try{
         const res = await fetch(url, { signal: ctrl.signal, headers: { 'Accept': 'application/json' }});
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const ct = res.headers.get('content-type') || '';
+        if(!res.ok) throw new Error('HTTP '+res.status);
+        const ct = (res.headers.get('content-type')||'').toLowerCase();
         return ct.includes('json') ? res.json() : res.text();
-      } finally { clearTimeout(to); }
-    }
-    function itemLabel(n) { return n === 1 ? 'item' : 'itens'; }
-    function currentBase(){ return (baseInputs[0]?.value || '').replace(/\/$/,''); }
+      } finally { clearTimeout(t); }
+    };
 
-    function renderResources(base, rows) {
-      listEl.innerHTML = '';
-      if (!rows.length) {
-        listEl.innerHTML = `<li class="px-3 py-3 text-sm text-slate-500">Nenhum recurso encontrado.</li>`;
-        statusEl.textContent = 'OK, sem recursos.';
-        return;
+    // ===== Render =====
+    function renderSkeleton(){
+      const make = () => `
+        <li class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-800/70 p-4">
+          <div class="h-5 w-24 skeleton rounded"></div>
+          <div class="mt-3 h-3 w-40 skeleton rounded"></div>
+          <div class="mt-4 h-8 w-full skeleton rounded"></div>
+        </li>`;
+      els.grid.innerHTML = Array.from({length:12}).map(make).join('');
+      els.list.innerHTML = Array.from({length:6}).map(()=>`
+        <li class="px-3 py-3">
+          <div class="h-4 w-48 skeleton rounded"></div>
+        </li>`).join('');
+    }
+
+    function sortData(arr){
+      const byName = (a,b) => a.name.localeCompare(b.name);
+      const byCount = (a,b) => (b.count??0) - (a.count??0);
+      switch(state.sort){
+        case 'name-asc': return [...arr].sort(byName);
+        case 'name-desc': return [...arr].sort(byName).reverse();
+        case 'count-asc': return [...arr].sort(byCount).reverse();
+        case 'count-desc': return [...arr].sort(byCount);
+        default: return arr;
       }
-      rows.forEach(({ name, count }) => {
-        const safeCount = Number(count ?? 0);
-        const li = document.createElement('li');
-        li.className = "px-3 py-3 hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors";
-        li.innerHTML = `
-          <div class="flex items-center justify-between gap-3">
-            <a class="font-medium text-pink-600 dark:text-pink-400 hover:underline" href="${base}/${name}" target="_blank" rel="noopener">/${name}</a>
-            <span class="text-xs text-slate-500 dark:text-slate-400">${safeCount} ${itemLabel(safeCount)}</span>
-          </div>`;
-        listEl.appendChild(li);
-      });
-      statusEl.innerHTML = '<span class="text-emerald-600 dark:text-emerald-400">Recursos carregados.</span>';
     }
 
-    async function loadResources() {
+    function applyFilter(){
+      const q = (els.search.value || '').trim().toLowerCase();
       const base = currentBase();
-      listEl.innerHTML = `<li class="px-3 py-3 text-sm text-slate-500">Carregando…</li>`;
-      statusEl.textContent = 'Carregando…';
-      try {
-        const rows = await getJSON(`${base}/__resources`);
-        if (Array.isArray(rows)) return renderResources(base, rows);
-      } catch {}
-      try {
-        const rows2 = await getJSON(`${base}/_resources`);
-        if (Array.isArray(rows2)) return renderResources(base, rows2);
-      } catch {}
-      try {
-        const posts = await getJSON(`${base}/posts`);
-        if (Array.isArray(posts)) return renderResources(base, [{ name: 'posts', count: posts.length }]);
-      } catch {}
-      listEl.innerHTML = `<li class="px-3 py-3 text-sm text-rose-600">Falha ao carregar recursos.</li>`;
-      statusEl.innerHTML = 'Erro ao buscar. <span class="text-rose-600">Pode ser CORS</span>: libere a origem do site na API (<code class="text-xs">CORS_ORIGIN</code>) ou hospede esta página no mesmo domínio.';
+      let arr = state.resources;
+      if(q) arr = arr.filter(r => r.name.toLowerCase().includes(q));
+      state.filtered = sortData(arr);
+      const totalPages = Math.max(1, Math.ceil(state.filtered.length / state.pageSize));
+      state.page = Math.min(state.page, totalPages);
+      // slice page
+      const start = (state.page - 1) * state.pageSize;
+      const items = state.filtered.slice(start, start + state.pageSize);
+
+      // toggles
+      els.empty.classList.toggle('hidden', items.length !== 0);
+      els.pager.classList.toggle('hidden', state.filtered.length <= state.pageSize);
+
+      // render grid
+      if(state.view === 'grid'){
+        els.grid.classList.remove('hidden');
+        els.list.classList.add('hidden');
+        els.grid.innerHTML = items.map(({name, count}) => `
+          <li class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-800/70 p-4 hover:shadow-sm transition">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <a href="${base}/${name}" target="_blank" rel="noopener"
+                   class="block font-semibold text-slate-800 dark:text-slate-100 hover:underline">/${name}</a>
+                <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">${count ?? 0} ${count==1?'item':'itens'}</p>
+              </div>
+              <span class="inline-flex items-center justify-center text-[11px] rounded-md px-2 py-1 ring-1 ring-slate-200 dark:ring-slate-700">${count ?? 0}</span>
+            </div>
+            <button data-copy="${base}/${name}" class="mt-4 w-full rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800">Copiar endpoint</button>
+          </li>`).join('');
+      } else {
+        els.list.classList.remove('hidden');
+        els.grid.classList.add('hidden');
+        els.list.innerHTML = items.map(({name, count}) => `
+          <li class="px-3 py-3 hover:bg-slate-50 dark:hover:bg-slate-900/40 transition-colors">
+            <div class="flex items-center justify-between gap-3">
+              <a class="font-medium text-pink-600 dark:text-pink-400 hover:underline" href="${base}/${name}" target="_blank" rel="noopener">/${name}</a>
+              <div class="flex items-center gap-2">
+                <span class="text-xs text-slate-500 dark:text-slate-400">${count ?? 0} ${count==1?'item':'itens'}</span>
+                <button data-copy="${base}/${name}" class="rounded-md border border-slate-300 dark:border-slate-700 px-2 py-1 text-xs hover:bg-slate-100 dark:hover:bg-slate-800">Copiar</button>
+              </div>
+            </div>
+          </li>`).join('');
+      }
+
+      // pagination UI
+      els.pageNo.textContent = String(state.page);
+      els.pageTotal.textContent = String(totalPages);
+      els.prev.disabled = state.page <= 1;
+      els.next.disabled = state.page >= totalPages;
     }
 
-    async function detect() {
+    // ===== Dados =====
+    async function loadResources(){
+      state.loading = true;
+      els.cors.classList.add('hidden');
+      setStatus('Carregando…');
+      renderSkeleton();
+
       const base = currentBase();
-      statusEl.textContent = 'Testando /health…';
+      const tries = ['__resources', '_resources', 'posts'];
+      for(const ep of tries){
+        try{
+          const data = await fetchJSON(`${base}/${ep}`);
+          if(Array.isArray(data)){
+            if(ep === 'posts'){
+              state.resources = [{ name:'posts', count: data.length }];
+            } else {
+              state.resources = data.map(it => ({ name: it.name, count: Number(it.count ?? 0) }));
+            }
+            setStatus('Recursos carregados.');
+            state.loading = false;
+            applyFilter();
+            return;
+          }
+        }catch(_){}
+      }
+      state.loading = false;
+      state.resources = [];
+      applyFilter();
+      setStatus('Falha ao carregar recursos.', true);
+      els.cors.classList.remove('hidden');
+    }
+
+    async function detectHealth(){
+      setStatus('Testando /health…');
       try {
-        await getJSON(`${base}/health`, { timeout: 5000 });
-        statusEl.innerHTML = '<span class="text-emerald-600 dark:text-emerald-400">/health OK</span>';
-        setBase(base);
+        await fetchJSON(`${currentBase()}/health`, { timeout: 5000 });
+        setStatus('/health OK');
         loadResources();
       } catch {
-        statusEl.innerHTML = '<span class="text-rose-600">/health falhou</span>. Verifique a URL e CORS.';
+        setStatus('/health falhou. Verifique a URL e CORS.', true);
+        els.cors.classList.remove('hidden');
       }
     }
 
-    // Ações UI (desktop + mobile)
-    $$('[data-role="detectBtn"]').forEach(b => b.addEventListener('click', detect));
-    $$('[data-role="reloadBtn"]').forEach(b => b.addEventListener('click', loadResources));
+    // ===== Interações =====
+    function init(){
+      // Ano
+      $('#year').textContent = new Date().getFullYear();
 
-    // Copiar cURL
-    $('#copyCurl').addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText($('#curlExamples').textContent);
-        const btn = $('#copyCurl'); const prev = btn.textContent; btn.textContent = 'Copiado!';
-        setTimeout(() => btn.textContent = prev, 1200);
-      } catch {}
-    });
+      // Base inicial
+      setBase(localStorage.getItem('fakeapi_base') || defaultBase());
 
-    // Forks
-    fetch('https://api.github.com/repos/samuelikz/fakeapi')
-      .then(r => r.ok ? r.json() : Promise.reject())
-      .then(meta => { const el = document.getElementById('forks'); if (el) el.textContent = (typeof meta.forks_count === 'number') ? meta.forks_count : '0'; })
-      .catch(() => { const el = document.getElementById('forks'); if (el) el.textContent = '—'; });
+      // Eventos principais
+      $('#themeBtn').addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('fakeapi_theme', isDark ? 'dark' : 'light');
+      });
+      els.detectBtn.addEventListener('click', detectHealth);
+      els.reloadBtn.addEventListener('click', loadResources);
+      els.baseInput.addEventListener('change', e => setBase(e.target.value));
 
-    // Ano
-    const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
+      // Controles de exibição
+      els.search.addEventListener('input', () => { state.page = 1; applyFilter(); });
+      els.sort.addEventListener('change', e => { state.sort = e.target.value; state.page = 1; applyFilter(); });
+      els.pageSize.addEventListener('change', e => { state.pageSize = Number(e.target.value || 12); state.page = 1; applyFilter(); });
+      els.prev.addEventListener('click', () => { state.page = Math.max(1, state.page-1); applyFilter(); });
+      els.next.addEventListener('click', () => { state.page = state.page+1; applyFilter(); });
+      els.viewGrid.addEventListener('click', () => { state.view='grid'; applyFilter(); els.viewGrid.classList.add('bg-white','dark:bg-slate-800'); els.viewList.classList.remove('bg-white','dark:bg-slate-800'); });
+      els.viewList.addEventListener('click', () => { state.view='list'; applyFilter(); els.viewList.classList.add('bg-white','dark:bg-slate-800'); els.viewGrid.classList.remove('bg-white','dark:bg-slate-800'); });
 
-    // Start
-    loadResources();
+      // Delegação: copiar endpoints
+      document.addEventListener('click', (ev) => {
+        const btn = ev.target.closest('[data-copy]');
+        if(!btn) return;
+        const text = btn.getAttribute('data-copy');
+        navigator.clipboard.writeText(text).then(()=>{
+          const prev = btn.textContent;
+          btn.textContent = 'Copiado!';
+          setTimeout(()=> btn.textContent = prev || 'Copiar', 1000);
+        });
+      });
+
+      // Carrega dados
+      loadResources();
+    }
+
+    // Go!
+    init();
   </script>
 </body>
 </html>
