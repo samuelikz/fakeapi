@@ -171,8 +171,8 @@ AUTH_TOKEN_TTL=1h
   **Body:**  
   ```json
   { "email": "string", "password": "string" }
-  retorno
-  { "token": "jwt", "user": { ... } }
+  "retorno",
+  { "token": "jwt", "user": { "..." } }
   ```
 
   # 🔄 Refresh Token
@@ -181,8 +181,8 @@ AUTH_TOKEN_TTL=1h
   **Body:**  
   ```json
   { "token": "jwt" }
-  retorno
-  { "token": "novo_jwt", "user": { ... } }
+  "retorno",
+  { "token": "novo_jwt", "user": { "..." } }
   ```
 
 ## 🔐 Exemplos Rápidos
@@ -404,3 +404,4 @@ Licença **MIT** – veja [LICENSE](LICENSE).
 
 **Desenvolvido com ❤️ por Samuel**  
 *Este projeto é mantido como software livre sob a Licença MIT. Contribuições são sempre bem-vindas!*  
+
