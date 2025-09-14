@@ -266,6 +266,7 @@ module.exports = DB_CONFIG;
   "error": "Bad Request",
   "message": "Invalid ID parameter. ID must be a positive number."
 }
+```
 
 ## 📊 Estrutura do Banco de Dados
 
@@ -404,4 +405,5 @@ Licença **MIT** – veja [LICENSE](LICENSE).
 
 **Desenvolvido com ❤️ por Samuel**  
 *Este projeto é mantido como software livre sob a Licença MIT. Contribuições são sempre bem-vindas!*  
+
 
