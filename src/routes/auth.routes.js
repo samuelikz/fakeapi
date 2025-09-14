@@ -27,19 +27,49 @@ router.post("/login", (req, res) => {
   res.json({ token, user: payload });
 });
 
-/** POST /auth/refresh  body: { token }  (mock simples) */
+/** Helper: extrai token de body, header ou query */
+function readIncomingToken(req) {
+  const fromBody = req.body && (req.body.token || req.body.refreshToken || req.body.access_token);
+  if (fromBody) return String(fromBody);
+
+  const auth = req.headers && req.headers.authorization;
+  if (auth && auth.startsWith("Bearer ")) return auth.slice(7);
+
+  if (req.query && (req.query.token || req.query.refreshToken || req.query.access_token)) {
+    return String(req.query.token || req.query.refreshToken || req.query.access_token);
+  }
+
+  return "";
+}
+
+/** POST /auth/refresh  (mock simples) */
 router.post("/refresh", (req, res) => {
-  const { token: oldToken } = req.body || {};
-  if (!oldToken) return res.status(400).json({ error: "token_required" });
   try {
+    const oldToken = readIncomingToken(req); // sua função helper (como no patch anterior)
+    if (!oldToken) {
+      return res.status(400).json({ error: "token_required", message: "Provide token in body.token, Authorization: Bearer, or ?token=" });
+    }
+
     const parts = String(oldToken).split(".");
-    if (parts.length !== 3) throw new Error("bad token format");
+    if (parts.length !== 3) {
+      return res.status(400).json({ error: "invalid_token", message: "Malformed JWT (expected 3 parts)" });
+    }
+
     const payloadBase64 = parts[1];
-    const payload = JSON.parse(Buffer.from(payloadBase64, "base64url").toString());
-    const newToken = signToken(payload);
-    res.json({ token: newToken, user: payload });
-  } catch {
-    res.status(400).json({ error: "invalid_token" });
+    const raw = Buffer.from(payloadBase64, "base64url").toString();
+    const oldPayload = JSON.parse(raw);
+
+    // aqui não precisa deletar manualmente exp/iat/nbf, pois signToken já sanitiza
+    const newToken = signToken(oldPayload);
+
+    return res.json({ token: newToken, user: {
+      sub: String(oldPayload.sub),
+      name: oldPayload.name,
+      role: oldPayload.role,
+      scopes: Array.isArray(oldPayload.scopes) ? oldPayload.scopes : []
+    }});
+  } catch (e) {
+    return res.status(400).json({ error: "invalid_token", message: e?.message || "Cannot parse/refresh token" });
   }
 });
 
