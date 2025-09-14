@@ -67,7 +67,7 @@ Este Código de Conduta é adaptado do [Contributor Covenant](https://www.contri
 
 Se você tiver dúvidas sobre este Código de Conduta, entre em contato conosco:
 
-- **Email**: [samuel@example.com]
+- **Email**: [samuel.estc@gmail.com]
 - **GitHub**: [@samuelikz](https://github.com/samuelikz)
 - **Issues**: [GitHub Issues](https://github.com/samuelikz/fakeapi/issues)
 
