@@ -1,0 +1,80 @@
+name: 📋 License Check
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Executa diariamente às 00:00 UTC
+    - cron: '0 0 * * *'
+
+jobs:
+  license-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 🔍 Checkout code
+      uses: actions/checkout@v4
+      
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: 📦 Install dependencies
+      run: npm ci
+      
+    - name: 🔍 Check license file exists
+      run: |
+        if [ ! -f "LICENSE" ]; then
+          echo "❌ LICENSE file not found!"
+          exit 1
+        fi
+        echo "✅ LICENSE file found"
+        
+    - name: 🔍 Validate MIT license content
+      run: |
+        if grep -q "MIT License" LICENSE && grep -q "Copyright (c)" LICENSE; then
+          echo "✅ MIT License content validated"
+        else
+          echo "❌ Invalid MIT License content"
+          exit 1
+        fi
+        
+    - name: 🔍 Check package.json license field
+      run: |
+        LICENSE_FIELD=$(node -p "require('./package.json').license")
+        if [ "$LICENSE_FIELD" = "MIT" ]; then
+          echo "✅ Package.json license field is MIT"
+        else
+          echo "❌ Package.json license field is not MIT: $LICENSE_FIELD"
+          exit 1
+        fi
+        
+    - name: 🔍 Check README license section
+      run: |
+        if grep -q "Licença MIT" README.md; then
+          echo "✅ README contains MIT license reference"
+        else
+          echo "❌ README missing MIT license reference"
+          exit 1
+        fi
+        
+    - name: 📊 License summary
+      run: |
+        echo "📋 License Check Summary:"
+        echo "✅ LICENSE file exists"
+        echo "✅ MIT License content valid"
+        echo "✅ Package.json license field correct"
+        echo "✅ README license section present"
+        echo ""
+        echo "🎉 All license checks passed!"
+        
+    - name: 🚀 License status
+      run: |
+        echo "📄 Project License: MIT"
+        echo "👤 Copyright: Samuel Nunes"
+        echo "📅 Year: 2024"
+        echo "🌐 Repository: https://github.com/samuelikz/fakeapi"
