@@ -24,6 +24,7 @@
               class="ep-copy"
               @click="copyCurl(ep)"
               :aria-label="'Copiar curl para ' + ep.path"
+              aria-live="polite"
             >
               {{ copiedKey === ep.method + ep.path ? 'Copiado!' : 'curl' }}
             </button>
