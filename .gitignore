@@ -1,3 +1,6 @@
 node_modules
 .env
+<<<<<<< HEAD
 frontend/dist
+=======
+>>>>>>> 3214833aa1adf06f8d18c37b49f1d4571f951a4b

@@ -4,21 +4,33 @@
       "id": 1,
       "email": "admin@example.com",
       "name": "Admin",
+<<<<<<< HEAD
       "password": "$2b$10$0cS.VHbl8ZTx06yEbcY.q.NpHXclk8Y65f8.HgwaY7jMAwF4AqH1q",
       "role": "admin",
       "scopes": [
         "*:*"
       ]
+=======
+      "password": "admin123",
+      "role": "admin",
+      "scopes": ["*:*"]
+>>>>>>> 3214833aa1adf06f8d18c37b49f1d4571f951a4b
     },
     {
       "id": 2,
       "email": "alice@example.com",
       "name": "Alice",
+<<<<<<< HEAD
       "password": "$2b$10$NaphuSIqvUMHvhQr9Z1ac.ltsx8hjhI7vpHIqs3m6wYP5rL770OlS",
       "role": "user",
       "scopes": [
         "read:*"
       ]
+=======
+      "password": "alice",
+      "role": "user",
+      "scopes": ["read:*"]
+>>>>>>> 3214833aa1adf06f8d18c37b49f1d4571f951a4b
     }
   ],
   "posts": [
@@ -29,6 +41,7 @@
       "author": "João",
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"
+<<<<<<< HEAD
     },
     {
       "id": 2,
@@ -38,3 +51,8 @@
     }
   ]
 }
+=======
+    }
+  ]
+}
+>>>>>>> 3214833aa1adf06f8d18c37b49f1d4571f951a4b
