@@ -2,10 +2,10 @@
   <div class="app">
     <NavBar />
     <main>
-      <HeroSection id="hero" />
-      <QuickStart id="quickstart" />
-      <EndpointsReference id="endpoints" />
-      <HealthBadge id="health" />
+      <HeroSection />
+      <QuickStart />
+      <EndpointsReference />
+      <HealthBadge />
     </main>
     <footer class="footer">
       <div class="container footer__inner">

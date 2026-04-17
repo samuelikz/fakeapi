@@ -64,6 +64,8 @@ function copy(text, id) {
   navigator.clipboard.writeText(text).then(() => {
     copied.value = id
     setTimeout(() => { copied.value = null }, 1500)
+  }).catch(() => {
+    console.warn('Clipboard write failed')
   })
 }
 </script>
@@ -117,7 +119,7 @@ function copy(text, id) {
 }
 
 .terminal__comment {
-  color: #4a5568;
+  color: var(--text-muted);
   font-size: 12px;
 }
 

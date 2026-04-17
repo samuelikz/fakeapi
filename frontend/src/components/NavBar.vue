@@ -66,26 +66,26 @@
   gap: 24px;
 }
 
-.navbar__links a {
+.navbar__links a:not(.navbar__github) {
   font-size: 14px;
   color: var(--text-dim);
   text-decoration: none;
   transition: color 0.15s;
 }
 
-.navbar__links a:hover {
+.navbar__links a:not(.navbar__github):hover {
   color: var(--text);
   text-decoration: none;
 }
 
 .navbar__github {
   font-family: var(--font-mono);
-  font-size: 13px !important;
-  color: var(--green) !important;
+  font-size: 13px;
+  color: var(--green);
   border: 1px solid rgba(0, 255, 136, 0.3);
   border-radius: var(--radius);
   padding: 5px 12px;
-  transition: background 0.15s !important;
+  transition: background 0.15s;
 }
 
 .navbar__github:hover {
