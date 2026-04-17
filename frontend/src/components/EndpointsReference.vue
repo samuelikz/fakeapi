@@ -203,6 +203,11 @@ function copyCurl(ep) {
     grid-template-columns: 60px 1fr 40px;
     grid-template-rows: auto auto;
   }
+  .ep-path {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-all;
+  }
   .ep-desc {
     grid-column: 1 / -1;
     font-size: 12px;

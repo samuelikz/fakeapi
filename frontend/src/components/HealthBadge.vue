@@ -57,8 +57,10 @@ import { ref, computed } from 'vue'
 import { useHealth } from '../composables/useHealth.js'
 
 const STORAGE_KEY = 'fakeapi_health_url'
+const DEFAULT_URL = 'https://fakeapi.aioher.com'
 
-const inputUrl = ref(localStorage.getItem(STORAGE_KEY) || 'https://fakeapi.aioher.com')
+const savedUrl = typeof window !== 'undefined' ? localStorage.getItem(STORAGE_KEY) : null
+const inputUrl = ref(savedUrl || DEFAULT_URL)
 const baseUrl = ref(inputUrl.value)
 
 const health = useHealth(baseUrl)
