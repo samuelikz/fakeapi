@@ -1,7 +1,6 @@
 const DB_CONFIG = require('../config/database');
 const { safeReadJSON, safeWriteJSON, nextId } = require('../utils/fileUtils');
 
-<<<<<<< HEAD
 // Nomes de coleção que causariam prototype pollution ou acesso a internals do objeto
 const BLOCKED_COLLECTION_NAMES = new Set([
   '__proto__', 'constructor', 'prototype', 'toString', 'valueOf',
@@ -21,8 +20,6 @@ function sanitizePayload(obj) {
   return clean;
 }
 
-=======
->>>>>>> 3214833aa1adf06f8d18c37b49f1d4571f951a4b
 class DatabaseService {
   constructor() {
     this.dbPath = DB_CONFIG.path;
@@ -37,12 +34,9 @@ class DatabaseService {
   }
 
   ensureCollection(db, name) {
-<<<<<<< HEAD
     if (BLOCKED_COLLECTION_NAMES.has(name)) {
       throw Object.assign(new Error(`Invalid collection name: "${name}"`), { status: 400 });
     }
-=======
->>>>>>> 3214833aa1adf06f8d18c37b49f1d4571f951a4b
     if (!db[name]) db[name] = [];
   }
 
@@ -50,15 +44,9 @@ class DatabaseService {
     const db = this.loadDB();
     this.ensureCollection(db, collection);
     const id = nextId(db[collection]);
-<<<<<<< HEAD
     const item = {
       id,
       ...sanitizePayload(payload),
-=======
-    const item = { 
-      id, 
-      ...payload, 
->>>>>>> 3214833aa1adf06f8d18c37b49f1d4571f951a4b
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };
@@ -104,22 +92,12 @@ class DatabaseService {
     this.ensureCollection(db, collection);
     const idx = db[collection].findIndex(i => String(i.id) === String(id));
     if (idx === -1) return null;
-<<<<<<< HEAD
-
     const current = db[collection][idx];
     const clean = sanitizePayload(payload);
     const next = merge
       ? { ...current, ...clean, id: current.id, updatedAt: new Date().toISOString() }
       : { id: current.id, ...clean, createdAt: current.createdAt, updatedAt: new Date().toISOString() };
 
-=======
-    
-    const current = db[collection][idx];
-    const next = merge 
-      ? { ...current, ...payload, id: current.id, updatedAt: new Date().toISOString() }
-      : { id: current.id, ...payload, createdAt: current.createdAt, updatedAt: new Date().toISOString() };
-    
->>>>>>> 3214833aa1adf06f8d18c37b49f1d4571f951a4b
     db[collection][idx] = next;
     this.saveDB(db);
     return next;

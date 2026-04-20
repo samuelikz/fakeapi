@@ -33,13 +33,8 @@ app.use(logger);
 
 // Servir arquivos estáticos
 app.use(express.static(path.join(__dirname, '..', 'public')));
-
-<<<<<<< HEAD
-=======
 // Middleware de validação global
 app.use(validateJSON);
-
->>>>>>> 3214833aa1adf06f8d18c37b49f1d4571f951a4b
 // >>> AUTH: preenche req.user se houver Bearer + AUTH_ENABLED=true
 app.use(authOptional);
 
@@ -48,8 +43,6 @@ app.use('/', healthRoutes);
 
 // Rotas do sistema (devem vir antes das rotas de recursos)
 app.use('/', systemRoutes);
-
-<<<<<<< HEAD
 // Rate limiter simples em memória para /auth/login
 const _loginAttempts = new Map();
 function loginRateLimiter(req, res, next) {
@@ -80,9 +73,6 @@ function loginRateLimiter(req, res, next) {
 
 // >>> Rotas de autenticação (login/refresh)
 app.use('/auth/login', loginRateLimiter);
-=======
-// >>> Rotas de autenticação (login/refresh)
->>>>>>> 3214833aa1adf06f8d18c37b49f1d4571f951a4b
 app.use('/auth', authRouter);
 
 // >>> Guard de autorização SOMENTE para recursos dinâmicos
@@ -92,13 +82,8 @@ app.use(
   requireScope(crudScopeFor)
 );
 
-<<<<<<< HEAD
-// Rotas de recursos — validateJSON aplicado só aqui onde body é obrigatório
-app.use('/', validateJSON, validatePagination, resourceRoutes);
-=======
 // Rotas de recursos com validação específica (agora protegidas pelo guard acima)
 app.use('/', validatePagination, resourceRoutes);
->>>>>>> 3214833aa1adf06f8d18c37b49f1d4571f951a4b
 
 // Middleware de tratamento de erros
 app.use((err, req, res, next) => {
