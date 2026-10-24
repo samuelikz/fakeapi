@@ -79,8 +79,11 @@ Para testes do seu projeto, fixe a versão do pacote no lockfile.
 
 ```bash
 npm install
-npm test        # node --test, sem dependências de teste
+npm run build:native   # compila o PRNG em Rust (native/), precisa de Rust/cargo
+npm test                 # node --test
 ```
+
+O PRNG tem dois backends: o addon nativo (napi-rs, em `native/`) e uma implementação JS. Se o addon não estiver compilado, o pacote usa o JS automaticamente. Os dois geram exatamente a mesma sequência; `tests/native.test.js` verifica isso.
 
 Estrutura: `src/faker.js` (classe `Faker`), `src/random.js` (PRNG), `src/modules/*` (um arquivo por categoria), `src/locales/*` (dados por locale).
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- PRNG com addon nativo em Rust (napi-rs, `native/`). Fallback automático para JS quando o addon não está compilado. Sequência idêntica nos dois backends.
+
 ## 0.1.0
 
 Primeira versão do pacote, que substitui o servidor Express anterior do repositório.

@@ -1,4 +1,6 @@
 // PRNG determinístico (sfc32). Mesmo seed + mesma ALGORITHM_VERSION => mesma sequência.
+// Usa o addon nativo (napi-rs, em native/) quando disponível; senão, a implementação JS abaixo.
+// As duas implementações produzem exatamente a mesma sequência (ver tests/native.test.js).
 const ALGORITHM_VERSION = 1;
 
 function fnv1a(str) {
@@ -10,7 +12,7 @@ function fnv1a(str) {
   return h;
 }
 
-class Random {
+class JsRandom {
   constructor(seed) {
     const s = String(seed);
     this.a = fnv1a(`v${ALGORITHM_VERSION}:${s}`);
@@ -31,4 +33,29 @@ class Random {
   }
 }
 
-module.exports = { Random, ALGORITHM_VERSION };
+function loadNative() {
+  try {
+    const native = require('../native');
+    if (native.algorithmVersion() !== ALGORITHM_VERSION) return null;
+    return native;
+  } catch {
+    return null;
+  }
+}
+
+const native = loadNative();
+
+class NativeRandomAdapter {
+  constructor(seed) {
+    this.impl = new native.NativeRandom(String(seed));
+  }
+
+  next() {
+    return this.impl.next();
+  }
+}
+
+const Random = native ? NativeRandomAdapter : JsRandom;
+const backend = native ? 'native' : 'js';
+
+module.exports = { Random, JsRandom, ALGORITHM_VERSION, backend };
