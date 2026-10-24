@@ -1,0 +1,15 @@
+module.exports = {
+  code: 'pt_BR',
+  firstNamesFemale: ['Ana', 'Beatriz', 'Carla', 'Daniela', 'Helena', 'Júlia', 'Laura', 'Marina', 'Renata', 'Sofia'],
+  firstNamesMale: ['Bruno', 'Carlos', 'Diego', 'Eduardo', 'Felipe', 'Gabriel', 'João', 'Lucas', 'Rafael', 'Samuel'],
+  lastNames: ['Silva', 'Santos', 'Oliveira', 'Souza', 'Rodrigues', 'Ferreira', 'Almeida', 'Pereira', 'Lima', 'Costa'],
+  jobTitles: ['Engenheiro', 'Designer', 'Analista', 'Professor', 'Enfermeira', 'Gerente', 'Escritor', 'Contador'],
+  cities: ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte', 'Curitiba', 'Porto Alegre', 'Salvador', 'Recife'],
+  states: ['SP', 'RJ', 'MG', 'PR', 'RS', 'BA', 'PE'],
+  streetNames: ['Rua das Flores', 'Avenida Paulista', 'Rua XV de Novembro', 'Alameda Santos', 'Rua do Comércio'],
+  countries: ['Brasil', 'Portugal', 'Argentina', 'Chile', 'Estados Unidos'],
+  zipFormat: '#####-###',
+  phoneFormat: '(##) #####-####',
+  freeEmailDomains: ['exemplo.com.br', 'mail.test', 'inbox.test'],
+  loremWords: ['lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit', 'sed', 'do'],
+};

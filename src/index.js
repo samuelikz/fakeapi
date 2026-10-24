@@ -1,12 +1,8 @@
-/**
- * Ponto de entrada principal da aplicação
- * Este arquivo facilita imports e testes
- */
-
-const app = require('./server');
-const databaseService = require('./services/databaseService');
+const { Faker } = require('./faker');
 
 module.exports = {
-  app,
-  databaseService
+  Faker,
+  createFaker: opts => new Faker(opts),
+  // Instância padrão, não determinística (seed = agora). Para testes, crie uma com seed.
+  faker: new Faker(),
 };

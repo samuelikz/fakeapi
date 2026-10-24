@@ -1,45 +1,25 @@
 {
-  "name": "fakeapi",
-  "version": "1.0.0",
-  "description": "Fake API RESTful com arquitetura limpa e separação de responsabilidades",
-  "repository": "https://github.com/samuelikz/fakeapi",
-  "author": "Samuel (github.com/samuelikz)",
-  "main": "src/server.js",
-  "type": "commonjs",
+  "name": "@samuelikz/fakegen",
+  "version": "0.1.0",
+  "description": "Gerador de dados de exemplo determinístico (seed), sem dependências, com locales e data de referência fixa",
+  "main": "src/index.js",
+  "files": [
+    "src"
+  ],
+  "sideEffects": false,
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/server.js",
-    "start": "node src/server.js",
-    "reset": "node -e \"require('./src/services/databaseService').reset()\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "bcryptjs": "^3.0.2",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "jsonwebtoken": "^9.0.2"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.0"
+    "test": "node --test"
   },
   "keywords": [
-    "fake-api",
-    "rest-api",
-    "json-server",
-    "express",
-    "nodejs",
-    "development"
+    "fake",
+    "faker",
+    "mock",
+    "seed",
+    "test-data",
+    "pt-br"
   ],
   "engines": {
-    "node": ">=14.0.0",
-    "npm": ">=6.0.0"
-  },
-  "homepage": "https://github.com/samuelikz/fakeapi#readme",
-  "bugs": {
-    "url": "https://github.com/samuelikz/fakeapi/issues"
-  },
-  "funding": {
-    "type": "individual",
-    "url": "https://github.com/sponsors/samuelikz"
+    "node": ">=18"
   }
 }

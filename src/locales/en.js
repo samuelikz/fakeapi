@@ -1,0 +1,15 @@
+module.exports = {
+  code: 'en',
+  firstNamesFemale: ['Olivia', 'Emma', 'Ava', 'Sophia', 'Isabella', 'Mia', 'Charlotte', 'Amelia', 'Harper', 'Grace'],
+  firstNamesMale: ['Liam', 'Noah', 'Oliver', 'James', 'Lucas', 'Henry', 'Leo', 'Ethan', 'Mason', 'Samuel'],
+  lastNames: ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Wilson', 'Taylor'],
+  jobTitles: ['Engineer', 'Designer', 'Analyst', 'Teacher', 'Nurse', 'Manager', 'Writer', 'Accountant'],
+  cities: ['Springfield', 'Riverton', 'Lakeside', 'Fairview', 'Maple Grove', 'Oakdale', 'Harborview'],
+  states: ['California', 'Texas', 'New York', 'Oregon', 'Ohio', 'Florida'],
+  streetNames: ['Main St', 'Oak Ave', 'Pine Rd', 'Cedar Ln', 'Elm St', 'Park Blvd'],
+  countries: ['United States', 'Canada', 'United Kingdom', 'Australia', 'Germany', 'Japan'],
+  zipFormat: '#####',
+  phoneFormat: '(###) ###-####',
+  freeEmailDomains: ['example.com', 'mail.test', 'inbox.test'],
+  loremWords: ['lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit', 'sed', 'do', 'eiusmod', 'tempor'],
+};
