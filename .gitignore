@@ -1,2 +1,8 @@
 node_modules
 .env
+
+# Arquivos locais do Claude Code (não versionados)
+CLAUDE.md
+.claude/
+.remember/
+docs/superpowers/
