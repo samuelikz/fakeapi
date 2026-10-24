@@ -1,4 +1,5 @@
 module.exports = {
+  productTemplate: '{product} {material} {adjective}',
   code: 'pt_BR',
   firstNamesFemale: ['Ana', 'Beatriz', 'Carla', 'Daniela', 'Helena', 'Júlia', 'Laura', 'Marina', 'Renata', 'Sofia'],
   firstNamesMale: ['Bruno', 'Carlos', 'Diego', 'Eduardo', 'Felipe', 'Gabriel', 'João', 'Lucas', 'Rafael', 'Samuel'],
@@ -12,4 +13,13 @@ module.exports = {
   phoneFormat: '(##) #####-####',
   freeEmailDomains: ['exemplo.com.br', 'mail.test', 'inbox.test'],
   loremWords: ['lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit', 'sed', 'do'],
+  productAdjectives: ["Ergonômica","Artesanal","Refinada","Prática","Rústica","Moderna"],
+  productMaterials: ["de Aço","de Madeira","de Algodão","de Granito","de Plástico","de Bambu"],
+  products: ["Cadeira","Teclado","Luminária","Mochila","Garrafa","Relógio"],
+  departments: ["Eletrônicos","Jardim","Livros","Vestuário","Cozinha","Brinquedos"],
+  currencyCodes: ["BRL","USD","EUR","GBP","ARS","CLP"],
+  colorNames: ["vermelho","azul","verde","amarelo","roxo","laranja","preto","branco","turquesa","bordô"],
+  companySuffixes: ["Ltda","S.A.","Group","Labs","Parceiros","Sistemas"],
+  catchPhraseAdjectives: ["Multicamada","Simplificada","Orientada a objetos","Multiplataforma","Focada"],
+  catchPhraseNouns: ["produtividade","estrutura","solução","capacidade","plataforma","interface gráfica"],
 };

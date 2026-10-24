@@ -49,6 +49,12 @@ faker.number.int({ min: 1, max: 10 });
 - `string`: `alpha`, `alphanumeric`, `hexadecimal`, `uuid`
 - `lorem`: `words`, `sentence`, `paragraph`
 - `br`: `cpf`, `cnpj` (com dígitos verificadores)
+- `commerce`: `productName`, `department`, `price`
+- `finance`: `currencyCode`, `amount`, `accountNumber`, `creditCardNumber` (Luhn válido; visa e mastercard)
+- `color`: `human`, `hex`, `rgb`, `hsl`
+- `image`: `url`, `avatar` (placeholders determinísticos)
+- `company`: `name`, `catchPhrase`
+- `system`: `fileName`, `fileExtension`, `mimeType`, `semver`
 
 ## Estabilidade da saída
 

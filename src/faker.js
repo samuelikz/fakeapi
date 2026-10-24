@@ -10,6 +10,12 @@ const modules = {
   string: require('./modules/string'),
   lorem: require('./modules/lorem'),
   br: require('./modules/br'),
+  commerce: require('./modules/commerce'),
+  finance: require('./modules/finance'),
+  color: require('./modules/color'),
+  image: require('./modules/image'),
+  company: require('./modules/company'),
+  system: require('./modules/system'),
 };
 
 class Faker {

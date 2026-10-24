@@ -1,4 +1,5 @@
 module.exports = {
+  productTemplate: '{adjective} {material} {product}',
   code: 'en',
   firstNamesFemale: ['Olivia', 'Emma', 'Ava', 'Sophia', 'Isabella', 'Mia', 'Charlotte', 'Amelia', 'Harper', 'Grace'],
   firstNamesMale: ['Liam', 'Noah', 'Oliver', 'James', 'Lucas', 'Henry', 'Leo', 'Ethan', 'Mason', 'Samuel'],
@@ -12,4 +13,13 @@ module.exports = {
   phoneFormat: '(###) ###-####',
   freeEmailDomains: ['example.com', 'mail.test', 'inbox.test'],
   loremWords: ['lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit', 'sed', 'do', 'eiusmod', 'tempor'],
+  productAdjectives: ["Ergonomic","Handmade","Refined","Practical","Rustic","Sleek"],
+  productMaterials: ["Steel","Wooden","Cotton","Granite","Plastic","Fresh"],
+  products: ["Chair","Keyboard","Lamp","Backpack","Bottle","Watch"],
+  departments: ["Electronics","Garden","Books","Clothing","Kitchen","Toys"],
+  currencyCodes: ["USD","EUR","GBP","JPY","CAD","AUD"],
+  colorNames: ["red","blue","green","yellow","purple","orange","black","white","teal","maroon"],
+  companySuffixes: ["Inc","LLC","Group","Labs","Partners","Systems"],
+  catchPhraseAdjectives: ["Multi-layered","Streamlined","Object-based","Cross-platform","Focused"],
+  catchPhraseNouns: ["throughput","framework","solution","capacity","platform","graphical interface"],
 };
