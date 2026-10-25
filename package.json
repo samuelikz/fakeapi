@@ -9,8 +9,7 @@
   "sideEffects": false,
   "license": "MIT",
   "scripts": {
-    "test": "node --test",
-    "build:native": "napi build --platform --release --manifest-path native/Cargo.toml --output-dir native"
+    "test": "node --test"
   },
   "keywords": [
     "fake",
@@ -22,8 +21,5 @@
   ],
   "engines": {
     "node": ">=18"
-  },
-  "devDependencies": {
-    "@napi-rs/cli": "^3.10.9"
   }
 }
