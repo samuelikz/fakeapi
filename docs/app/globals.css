@@ -158,16 +158,42 @@ p { text-wrap: pretty; }
   display: inline-flex;
   align-items: center;
   gap: 7px;
+  height: 34px;
   font-size: 14.5px;
   font-weight: 550;
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 6px 13px;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  padding: 0 13px;
 }
-.topbar .gh:hover { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--glow) 25%, transparent); text-decoration: none; }
+.topbar .gh:hover { border-color: var(--accent); text-decoration: none; }
 .topbar .gh svg { width: 17px; height: 17px; fill: currentColor; }
+
+/* ============ Botões: linguagem visual única ============ */
+/* Mesma base tipográfica, cursor, transição, raio e anel de foco em todos os botões */
+.btn, .theme-btn, .pal-btn, .search-btn, .topbar .gh, .loc-btn, .codeblock .copy {
+  font: inherit;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.12s;
+}
+.btn:focus-visible,
+.theme-btn:focus-visible,
+.pal-btn:focus-visible,
+.search-btn:focus-visible,
+.topbar .gh:focus-visible,
+.loc-btn:focus-visible,
+.codeblock .copy:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+/* Anel de destaque do hover: apenas nos controles independentes */
+.btn.ghost:hover,
+.theme-btn:hover,
+.pal-btn:hover,
+.search-btn:hover,
+.topbar .gh:hover {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--glow) 22%, transparent);
+}
 
 /* Controle de tema/paleta */
 .theme-ctl {
@@ -187,7 +213,6 @@ p { text-wrap: pretty; }
   color: var(--text-muted);
   cursor: pointer;
   font-size: 15px;
-  transition: color 0.15s, border-color 0.15s, background 0.15s;
 }
 .theme-btn:hover { color: var(--text-strong); border-color: var(--accent); }
 .pal-btn {
@@ -199,8 +224,6 @@ p { text-wrap: pretty; }
   border: 1px solid var(--border);
   border-radius: 8px;
   background: transparent;
-  cursor: pointer;
-  transition: border-color 0.15s;
 }
 .pal-btn:hover { border-color: var(--accent); }
 .pal-btn i { width: 13px; height: 13px; border-radius: 50%; display: block; }
@@ -333,7 +356,7 @@ code.inline {
   border-radius: 6px;
   transition: color 0.15s, background 0.15s;
 }
-.codeblock .copy:hover { color: #e6edf3; background: #2b3240; }
+.codeblock .copy:hover { color: #e6edf3; background: rgba(255, 255, 255, 0.09); }
 .copy svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; }
 pre.code {
   background: var(--bg-code);
@@ -499,6 +522,9 @@ td code, th code { font-family: var(--mono); font-size: 12.3px; }
   font-size: 66px;
   line-height: 1;
   display: block;
+  width: fit-content;
+  margin: 0 auto;
+  color: var(--accent);
   filter: drop-shadow(0 8px 16px var(--glow));
   transform: rotate(-8deg);
 }
@@ -539,7 +565,6 @@ td code, th code { font-family: var(--mono); font-size: 12.3px; }
   border-radius: 10px;
   font-weight: 650;
   font-size: 15px;
-  transition: transform 0.12s, box-shadow 0.15s, background 0.15s, border-color 0.15s;
 }
 .btn:hover { text-decoration: none; transform: translateY(-1px); }
 .btn.primary { background: var(--grad); color: #fff; box-shadow: 0 4px 16px var(--glow); }
@@ -578,7 +603,7 @@ td code, th code { font-family: var(--mono); font-size: 12.3px; }
   transform: translateY(-2px);
   text-decoration: none;
 }
-.cardl .icon { font-size: 21px; display: block; margin-bottom: 10px; }
+.cardl .icon { font-size: 22px; color: var(--accent); line-height: 1; display: block; margin-bottom: 10px; }
 .cardl h3 { margin: 0 0 6px; font-size: 14.5px; font-family: var(--mono); color: var(--accent); }
 .cardl p { margin: 0; font-size: 13.8px; color: var(--text-muted); line-height: 1.6; }
 .cardl p.nm { font-family: var(--mono); font-size: 12.3px; }
@@ -592,7 +617,7 @@ td code, th code { font-family: var(--mono); font-size: 12.3px; }
   transition: border-color 0.15s, transform 0.15s;
 }
 .feature:hover { border-color: var(--accent); transform: translateY(-2px); }
-.feature .icon { font-size: 22px; margin-bottom: 10px; display: block; }
+.feature .icon { font-size: 24px; color: var(--accent); line-height: 1; margin-bottom: 10px; display: block; }
 .feature h3 { margin: 0 0 6px; font-size: 15.5px; color: var(--text-strong); }
 .feature p { margin: 0; font-size: 14px; color: var(--text-muted); line-height: 1.6; }
 
@@ -651,12 +676,9 @@ td code, th code { font-family: var(--mono); font-size: 12.3px; }
   border: 1px solid var(--border);
   border-radius: 8px;
   color: var(--text-muted);
-  font: inherit;
   font-size: 13.5px;
-  cursor: pointer;
-  transition: border-color 0.15s, box-shadow 0.15s;
 }
-.search-btn:hover { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--glow) 18%, transparent); }
+.search-btn:hover { border-color: var(--accent); }
 .search-btn kbd {
   margin-left: auto;
   font-family: var(--mono);
@@ -738,16 +760,15 @@ td code, th code { font-family: var(--mono); font-size: 12.3px; }
 .loc-btn {
   padding: 5px 14px;
   border: none;
-  border-radius: 7px;
+  border-radius: 6px;
   background: transparent;
   color: var(--text-muted);
   font-family: var(--mono);
   font-size: 12.5px;
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s;
 }
-.loc-btn:hover { color: var(--text-strong); }
+.loc-btn:hover { color: var(--text-strong); background: var(--hover); }
 .loc-btn.on { background: var(--accent-soft); color: var(--accent); font-weight: 700; }
+.loc-btn.on:hover { background: var(--accent-soft); color: var(--accent); }
 
 .toc {
   padding: 14px 16px;

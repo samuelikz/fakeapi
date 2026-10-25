@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from 'react';
 
+import * as I from './Icons';
+
 const THEMES = [
-  { id: 'dark', label: 'Escuro', icon: '🌙' },
-  { id: 'light', label: 'Claro', icon: '☀️' },
+  { id: 'dark', label: 'Escuro' },
+  { id: 'light', label: 'Claro' },
 ];
 
 const PALETTES = [
@@ -47,7 +49,7 @@ export default function ThemeSwitcher() {
         title={`Mudar para tema ${theme === 'dark' ? 'claro' : 'escuro'}`}
         onClick={() => apply(THEMES.find((t) => t.id !== theme).id)}
       >
-        {theme === 'dark' ? '☀️' : '🌙'}
+        {theme === 'dark' ? <I.sun /> : <I.moon />}
       </button>
       <div style={{ position: 'relative' }}>
         <button

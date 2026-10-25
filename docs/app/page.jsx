@@ -1,20 +1,22 @@
 import Link from 'next/link';
 import { modules } from '../data/api';
 import Code from './Code';
+import * as I from './Icons';
 
 export const metadata = { title: '@samuelikz/fakegen: gerador de dados de exemplo' };
 
 const ICONS = {
-  person: '🧑', internet: '🌐', location: '📍', phone: '📞', date: '🗓️',
-  number: '🔢', string: '🔤', lorem: '📝', br: '🇧🇷', commerce: '🛒',
-  finance: '💳', color: '🎨', image: '🖼️', company: '🏢', system: '💻',
+  person: I.person, internet: I.internet, location: I.location, phone: I.phone,
+  date: I.date, number: I.number, string: I.string, lorem: I.lorem, br: I.br,
+  commerce: I.commerce, finance: I.finance, color: I.color, image: I.image,
+  company: I.company, system: I.system,
 };
 
 export default function Home() {
   return (
     <div>
       <section className="hero">
-        <span className="emoji">🎲</span>
+        <span className="emoji"><I.dice /></span>
         <span className="pill">v0.1.0 · sem dependências · MIT</span>
         <h1>
           Dados de exemplo <em>reproduzíveis</em>, em uma linha.
@@ -62,13 +64,16 @@ f.br.cpf({ formatted: true });  // "081.234.929-60"`}</Code>
           <Link href="/docs" className="ver-tudo">Documentação completa →</Link>
         </div>
         <div className="grid">
-          {modules.map((m) => (
-            <Link key={m.slug} href={`/docs/api/${m.slug}`} className="cardl">
-              <span className="icon">{ICONS[m.slug]}</span>
-              <h3>{m.title}</h3>
-              <p className="nm">{m.methods.map((x) => x.name).join(' · ')}</p>
-            </Link>
-          ))}
+          {modules.map((m) => {
+            const Icon = ICONS[m.slug] || I.number;
+            return (
+              <Link key={m.slug} href={`/docs/api/${m.slug}`} className="cardl">
+                <span className="icon"><Icon /></span>
+                <h3>{m.title}</h3>
+                <p className="nm">{m.methods.map((x) => x.name).join(' · ')}</p>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
@@ -78,22 +83,22 @@ f.br.cpf({ formatted: true });  // "081.234.929-60"`}</Code>
         </div>
         <div className="features">
           <div className="feature">
-            <span className="icon">📦</span>
+            <span className="icon"><I.pkg /></span>
             <h3>Zero dependências</h3>
             <p>CommonJS puro, Node 18+. Seu <code className="inline">node_modules</code> agradece.</p>
           </div>
           <div className="feature">
-            <span className="icon">🎯</span>
+            <span className="icon"><I.target /></span>
             <h3>Determinístico</h3>
             <p>Mesma seed, mesma sequência, garantida por testes de contrato travados em <code className="inline">en</code> e <code className="inline">pt_BR</code>.</p>
           </div>
           <div className="feature">
-            <span className="icon">🌍</span>
+            <span className="icon"><I.languages /></span>
             <h3>Locales com fallback</h3>
             <p>Nomes e formatos em português ou inglês. Chave ausente em <code className="inline">pt_BR</code> cai para <code className="inline">en</code> automaticamente.</p>
           </div>
           <div className="feature">
-            <span className="icon">🇧🇷</span>
+            <span className="icon"><I.br /></span>
             <h3>Dados do Brasil</h3>
             <p>CPF e CNPJ com dígitos verificadores válidos, CEP e telefone no formato nacional.</p>
           </div>
