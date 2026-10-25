@@ -1,0 +1,65 @@
+name: docs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Dependências
+        run: npm ci && npm ci --prefix docs
+      - name: Docs sincronizadas com o código
+        run: node scripts/check-docs-sync.js
+      - name: Exemplos em dia
+        run: node scripts/gen-examples.js && git diff --exit-code docs/data/examples.json
+
+  build:
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci --prefix docs
+      - name: Sitemap
+        run: node scripts/gen-sitemap.js
+      - name: Build estático da docs (basePath do repositório para o Pages)
+        run: npm run docs:build --prefix docs
+        env:
+          DOCS_BASE_PATH: /fakeapi
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Publicar
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/dist/client
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

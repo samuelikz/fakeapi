@@ -9,7 +9,13 @@
   "sideEffects": false,
   "license": "MIT",
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "docs:dev": "npm run dev --prefix docs",
+    "docs:build": "npm run build --prefix docs",
+    "docs:start": "npm run start --prefix docs",
+    "docs:examples": "node scripts/gen-examples.js",
+    "docs:sitemap": "node scripts/gen-sitemap.js",
+    "docs:check": "node scripts/check-docs-sync.js"
   },
   "keywords": [
     "fake",

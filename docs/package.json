@@ -1,0 +1,22 @@
+{
+  "name": "fakegen-docs",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "start": "vinext start"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-server-dom-webpack": "^19.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-rsc": "^0.5.0",
+    "@vitejs/plugin-react": "^5.1.0",
+    "vinext": "^1.0.0",
+    "vite": "^8.0.0"
+  }
+}

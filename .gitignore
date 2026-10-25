@@ -1,5 +1,9 @@
 node_modules
 .env
+docs/node_modules
+docs/dist
+docs/.next
+docs/.vinext
 
 # Arquivos locais do Claude Code (não versionados)
 CLAUDE.md

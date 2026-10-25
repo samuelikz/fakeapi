@@ -1,0 +1,184 @@
+{
+  "en": {
+    "person": {
+      "firstName": "Henry",
+      "lastName": "Williams",
+      "fullName": "Oliver Smith",
+      "jobTitle": "Accountant",
+      "sex": "male"
+    },
+    "internet": {
+      "userName": "henrybrown",
+      "email": "jamesmiller@inbox.test",
+      "domainName": "garcia.org",
+      "url": "https://brown.com/",
+      "ipv4": "113.109.8.93",
+      "password": "C@e6jquF$r9n1HV6"
+    },
+    "location": {
+      "city": "Lakeside",
+      "state": "Ohio",
+      "country": "United Kingdom",
+      "streetAddress": "6549 Park Blvd",
+      "zipCode": "62260"
+    },
+    "phone": {
+      "number": "(535) 731-9512"
+    },
+    "date": {
+      "past": "2025-06-06T00:52:15.341Z",
+      "future": "2025-06-21T13:55:55.913Z",
+      "between": "2025-04-26T18:16:09.371Z",
+      "recent": "2025-06-14T05:38:43.830Z",
+      "birthdate": "1996-01-01T14:00:48.738Z"
+    },
+    "number": {
+      "int": 10,
+      "float": 0.73,
+      "digits": "8713",
+      "bigInt": "148029002535893078n"
+    },
+    "string": {
+      "alpha": "bbabn",
+      "alphanumeric": "epyga8fr",
+      "hexadecimal": "0aef9dea",
+      "uuid": "22d14fee-54bf-4c81-99dc-3e3bec8a121e"
+    },
+    "lorem": {
+      "words": [
+        "sed",
+        "tempor",
+        "adipiscing",
+        "sed"
+      ],
+      "sentence": "Adipiscing dolor consectetur lorem elit consectetur consectetur dolor ipsum.",
+      "paragraph": "Ipsum dolor lorem lorem lorem adipiscing elit consectetur consectetur. Amet lorem consectetur ipsum do lorem."
+    },
+    "br": {
+      "cpf": "882.757.855-29",
+      "cnpj": "98.716.146/0001-32"
+    },
+    "commerce": {
+      "productName": "Handmade Fresh Watch",
+      "department": "Toys",
+      "price": 978.71
+    },
+    "finance": {
+      "currencyCode": "AUD",
+      "amount": 1321.82,
+      "accountNumber": "62520072",
+      "creditCardNumber": "4289608200750523"
+    },
+    "color": {
+      "human": "yellow",
+      "hex": "#85032c",
+      "rgb": "rgb(244, 32, 99)",
+      "hsl": "hsl(103, 98%, 79%)"
+    },
+    "image": {
+      "url": "https://picsum.photos/seed/2h2v2yn2/640/480",
+      "avatar": "https://picsum.photos/seed/zl5juta0/96/96"
+    },
+    "company": {
+      "name": "Davis Partners",
+      "catchPhrase": "Focused framework"
+    },
+    "system": {
+      "fileName": "wzlywsakr.txt",
+      "fileExtension": "txt",
+      "mimeType": "application/pdf",
+      "semver": "1.13.32"
+    }
+  },
+  "pt_BR": {
+    "person": {
+      "firstName": "Gabriel",
+      "lastName": "Oliveira",
+      "fullName": "Diego Silva",
+      "jobTitle": "Contador",
+      "sex": "male"
+    },
+    "internet": {
+      "userName": "gabrielsouza",
+      "email": "eduardoalmeida@inbox.test",
+      "domainName": "ferreira.org",
+      "url": "https://souza.com/",
+      "ipv4": "113.109.8.93",
+      "password": "C@e6jquF$r9n1HV6"
+    },
+    "location": {
+      "city": "Belo Horizonte",
+      "state": "BA",
+      "country": "Argentina",
+      "streetAddress": "6549 Rua do Comércio",
+      "zipCode": "62260-535"
+    },
+    "phone": {
+      "number": "(73) 19512-7272"
+    },
+    "date": {
+      "past": "2025-06-09T13:07:44.731Z",
+      "future": "2025-07-13T01:09:16.848Z",
+      "between": "2025-04-20T20:57:36.857Z",
+      "recent": "2025-06-14T21:25:46.873Z",
+      "birthdate": "1993-08-23T07:03:41.883Z"
+    },
+    "number": {
+      "int": 2,
+      "float": 0.32,
+      "digits": "1480",
+      "bigInt": "290025358930780000n"
+    },
+    "string": {
+      "alpha": "ndlre",
+      "alphanumeric": "a8frbw69",
+      "hexadecimal": "9dea22d1",
+      "uuid": "4fee54bf-fc81-49dc-ae3b-ec8a121e5bf9"
+    },
+    "lorem": {
+      "words": [
+        "sed",
+        "consectetur",
+        "ipsum",
+        "amet"
+      ],
+      "sentence": "Adipiscing amet amet ipsum.",
+      "paragraph": "Elit ipsum ipsum lorem. Lorem consectetur adipiscing amet."
+    },
+    "br": {
+      "cpf": "433.041.808-85",
+      "cnpj": "82.757.855/0001-26"
+    },
+    "commerce": {
+      "productName": "Garrafa de Bambu Moderna",
+      "department": "Eletrônicos",
+      "price": 690.15
+    },
+    "finance": {
+      "currencyCode": "USD",
+      "amount": 4890.38,
+      "accountNumber": "61998981",
+      "creditCardNumber": "4625200722896084"
+    },
+    "color": {
+      "human": "verde",
+      "hex": "#160bb3",
+      "rgb": "rgb(150, 13, 129)",
+      "hsl": "hsl(74, 37%, 52%)"
+    },
+    "image": {
+      "url": "https://picsum.photos/seed/ag8eok92/640/480",
+      "avatar": "https://picsum.photos/seed/2h2v2yn2/96/96"
+    },
+    "company": {
+      "name": "Almeida S.A.",
+      "catchPhrase": "Focada estrutura"
+    },
+    "system": {
+      "fileName": "assvyiwow.csv",
+      "fileExtension": "txt",
+      "mimeType": "image/jpeg",
+      "semver": "9.18.36"
+    }
+  }
+}
